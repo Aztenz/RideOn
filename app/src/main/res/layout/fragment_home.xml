@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.Material3.Dark.NoActionBar"
+    android:background="@color/primary"
+    tools:context=".HomeFragment">
+
+    <LinearLayout
+        android:id="@+id/upper_page"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/border_round_bottom">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_margin="20dp"
+                android:text="abc@eng.asu.edu.eg"/>
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:id="@+id/account_btn"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:scaleType="centerCrop"
+                android:layout_margin="20dp"
+                android:src="@drawable/account"
+                android:background="@color/transparent"
+                android:contentDescription="@string/account" />
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="34sp"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:text="Welcome Ali"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/choose_ride_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/upper_page"
+        android:textSize="34sp"
+        android:layout_margin="20dp"
+        android:text="@string/our_available_rides"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ride_type"
+        app:layout_constraintTop_toBottomOf="@+id/choose_ride_text"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_ride_type"/>
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/available_rides_on_type"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ride_type"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_available_route_on_type"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

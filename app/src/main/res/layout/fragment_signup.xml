@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/Theme.Material3.Dark.NoActionBar"
+    android:background="@color/primary"
+    tools:context=".login_signup.SignupFragment">
+
+    <ImageView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/banner_image_view_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/app_banner"
+        android:contentDescription="@string/app_banner"/>
+
+    <TextView
+        app:layout_constraintStart_toStartOf="@id/banner_image_view_signup"
+        app:layout_constraintEnd_toEndOf="@id/banner_image_view_signup"
+        app:layout_constraintBottom_toBottomOf="@id/banner_image_view_signup"
+        android:layout_marginBottom="23dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        android:textAlignment="center"
+        android:text="@string/your_1_carpooling_app"/>
+
+    <TextView
+        android:id="@+id/email_text_view_signup"
+        app:layout_constraintTop_toBottomOf="@id/banner_image_view_signup"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        android:textSize="24sp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="23dp"/>
+
+    <EditText
+        android:id="@+id/email_edit_text_signup"
+        app:layout_constraintTop_toBottomOf="@id/email_text_view_signup"
+        app:layout_constraintStart_toStartOf="@id/email_text_view_signup"
+        app:layout_constraintEnd_toStartOf="@id/email_icon_signup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:hint="@string/email_hint"
+        android:autofillHints="Email"
+        android:inputType="textEmailAddress"
+        tools:ignore="VisualLintTextFieldSize" />
+
+    <ImageView
+        android:id="@+id/email_icon_signup"
+        app:layout_constraintStart_toEndOf="@id/email_edit_text_signup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/email_edit_text_signup"
+        app:layout_constraintBottom_toBottomOf="@id/email_edit_text_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/email"
+        android:layout_marginEnd="23dp"
+        android:contentDescription="@string/email"/>
+
+    <TextView
+        android:id="@+id/password_text_view_signup"
+        app:layout_constraintTop_toBottomOf="@id/email_edit_text_signup"
+        app:layout_constraintStart_toStartOf="@id/email_edit_text_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password"
+        android:textSize="24sp"
+        android:layout_marginTop="23dp"/>
+
+    <EditText
+        android:id="@+id/password_edit_text_signup"
+        app:layout_constraintTop_toBottomOf="@id/password_text_view_signup"
+        app:layout_constraintStart_toStartOf="@id/password_text_view_signup"
+        app:layout_constraintEnd_toStartOf="@id/password_icon_signup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:hint="@string/enter_your_password"
+        android:autofillHints="Email"
+        android:inputType="textPassword"
+        tools:ignore="VisualLintTextFieldSize" />
+
+    <ImageView
+        android:id="@+id/password_icon_signup"
+        app:layout_constraintStart_toEndOf="@id/password_edit_text_signup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/password_edit_text_signup"
+        app:layout_constraintBottom_toBottomOf="@id/password_edit_text_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/password"
+        android:layout_marginEnd="23dp"
+        android:contentDescription="@string/password"/>
+
+    <Button
+        android:id="@+id/sign_up_btn"
+        app:layout_constraintStart_toStartOf="@+id/password_text_view_signup"
+        app:layout_constraintEnd_toEndOf="@id/password_icon_signup"
+        app:layout_constraintTop_toBottomOf="@id/password_edit_text_signup"
+        app:layout_constraintBottom_toTopOf="@id/already_a_member_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up"
+        android:textSize="24sp"
+        style="@style/button_text_no_forced_uppercase"
+        tools:ignore="VisualLintButtonSize" />
+
+    <TextView
+        android:id="@+id/already_a_member_text"
+        app:layout_constraintStart_toStartOf="@id/sign_up_btn"
+        app:layout_constraintEnd_toStartOf="@+id/to_login_page"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/already_a_member"/>
+
+    <Button
+        android:id="@+id/to_login_page"
+        app:layout_constraintStart_toEndOf="@+id/already_a_member_text"
+        app:layout_constraintEnd_toEndOf="@id/sign_up_btn"
+        app:layout_constraintTop_toTopOf="@id/already_a_member_text"
+        app:layout_constraintBottom_toBottomOf="@id/already_a_member_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:background="@color/transparent"
+        android:text="@string/login"
+        android:textColor="@color/button_dark"
+        style="@style/button_text_no_forced_uppercase"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

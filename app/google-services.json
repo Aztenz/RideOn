@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "613537098692",
+    "project_id": "ride-on-6f52e",
+    "storage_bucket": "ride-on-6f52e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613537098692:android:d25065461cb930bef7d291",
+        "android_client_info": {
+          "package_name": "com.example.rideon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmv_cvTWyalXbtX3T7x668WHHCJlXYDr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

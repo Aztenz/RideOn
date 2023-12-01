@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">RideOn</string>
+    <string name="title_home">Home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="get_started_text">Find the best carpooling options for your daily commute</string>
+    <string name="get_started_button">Get Started</string>
+    <string name="app_banner">App Banner</string>
+    <string name="lets_get_started">Let\'s Get Started</string>
+    <string name="your_1_carpooling_app">Your #1 Carpooling App</string>
+    <string name="email">Email</string>
+    <string name="email_hint">enter your email…</string>
+    <string name="password">Password</string>
+    <string name="enter_your_password">enter your password…</string>
+    <string name="login">Login</string>
+    <string name="not_a_member">Not a member?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_a_member">Already a member?</string>
+    <string name="find_yourself_a_drive">Find yourself a drive</string>
+    <string name="available_drive_image_icon">Available drive Image icon</string>
+    <string name="arrow">arrow</string>
+    <string name="book_now">Book Now</string>
+    <string name="ride_type">ride type</string>
+    <string name="account">account</string>
+    <string name="choose_ride_icon_button">choose ride icon button</string>
+    <string name="our_available_rides">Our available rides</string>
+</resources>
