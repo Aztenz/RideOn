@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:theme="@style/Theme.Material3.Dark.NoActionBar"
     android:background="@color/primary"
-    tools:context=".HomeFragment">
+    tools:context=".view.HomeFragment">
 
     <LinearLayout
         android:id="@+id/view_upper_page_fragment_home"
@@ -86,6 +86,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/recycler_rides_type_fragment_home"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
         tools:listitem="@layout/item_ar_fragment_home"/>
 
 

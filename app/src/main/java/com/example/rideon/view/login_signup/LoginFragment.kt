@@ -1,4 +1,4 @@
-package com.example.rideon.login_signup
+package com.example.rideon.view.login_signup
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.example.rideon.MainActivity
+import com.example.rideon.view.MainActivity
 import com.example.rideon.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

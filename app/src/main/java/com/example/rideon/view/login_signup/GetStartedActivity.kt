@@ -1,4 +1,4 @@
-package com.example.rideon.login_signup
+package com.example.rideon.view.login_signup
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

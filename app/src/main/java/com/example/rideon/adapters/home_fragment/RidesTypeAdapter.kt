@@ -1,23 +1,32 @@
-package com.example.rideon.adapters
+package com.example.rideon.adapters.home_fragment
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rideon.R
+import com.example.rideon.model.Database
 
-class RidesTypeAdapter : RecyclerView.Adapter<RidesTypeAdapter.RidesTypeViewHolder>() {
+class RidesTypeAdapter(availableRidesRecycler: RecyclerView)
+    : RecyclerView.Adapter<RidesTypeAdapter.RidesTypeViewHolder>() {
+
+    private var availableRidesRecycler: RecyclerView
+    init {
+        this.availableRidesRecycler = availableRidesRecycler
+    }
 
     private var images = arrayOf(R.drawable.motorcycle, R.drawable.taxi, R.drawable.van, R.drawable.bus)
     private var names = arrayOf("Bikes", "Cars", "Vans", "Busses")
-    private lateinit var fragment: ViewGroup
+    private lateinit var fragment: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RidesTypeViewHolder {
         val context: Context = parent.context
+        fragment = context
         val inflater: LayoutInflater = LayoutInflater.from(context)
-        fragment = parent
 
         // Inflate the custom layout
         val itemView: View = inflater.inflate(R.layout.item_rt_fragment_home, parent, false)
@@ -39,11 +48,18 @@ class RidesTypeAdapter : RecyclerView.Adapter<RidesTypeAdapter.RidesTypeViewHold
         holder.textView.text = name
         holder.imgBtn.setImageResource(image)
         holder.imgBtn.setOnClickListener {
-            var ridesOnTypeRecycler: RecyclerView =
-                fragment
-                    .findViewById(R.id.recycler_available_rides_fragment_home)
-
-//            ridesOnTypeRecycler.adapter =
+            Database().getAvailableRidesOnType(
+                rideType = 1,
+                onSuccess = { rides ->
+                    availableRidesRecycler.adapter = RidesOnTypeAdapter(rides)
+                },
+                onFailure = { exception ->
+                    Toast.makeText(fragment,
+                        "Error! ${exception}.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+            )
         }
     }
 

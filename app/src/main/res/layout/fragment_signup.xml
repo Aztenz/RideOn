@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/Theme.Material3.Dark.NoActionBar"
     android:background="@color/primary"
-    tools:context=".login_signup.SignupFragment">
+    tools:context=".view.login_signup.SignupFragment">
 
     <ImageView
         app:layout_constraintTop_toTopOf="parent"

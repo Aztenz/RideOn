@@ -6,7 +6,7 @@
     android:background="@color/primary"
     android:theme="@style/Theme.Material3.Dark.NoActionBar"
     android:orientation="vertical"
-    tools:context=".AvailableRoutesFragment">
+    tools:context=".view.AvailableRoutesFragment">
 
     <TextView
         android:layout_width="wrap_content"

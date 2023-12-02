@@ -1,4 +1,4 @@
-package com.example.rideon.login_signup
+package com.example.rideon.view.login_signup
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

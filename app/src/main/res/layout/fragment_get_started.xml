@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login_signup.GetStartedFragment"
+    tools:context=".view.login_signup.GetStartedFragment"
     android:orientation="vertical"
     android:gravity="center"
     android:theme="@style/Theme.Material3.Dark.NoActionBar"
