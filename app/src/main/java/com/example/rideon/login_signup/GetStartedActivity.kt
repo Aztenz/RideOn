@@ -16,7 +16,7 @@ class GetStartedActivity : AppCompatActivity() {
             // If the activity is created for the first time, add FragmentA
             val getStartedFragment = GetStartedFragment()
             supportFragmentManager.beginTransaction()
-                .replace(R.id.get_started_fragment_holder, getStartedFragment)
+                .replace(R.id.get_started_activity_fragment_holder, getStartedFragment)
                 .commit()
         }
     }

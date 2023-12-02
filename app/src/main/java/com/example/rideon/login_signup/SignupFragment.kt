@@ -28,10 +28,10 @@ class SignupFragment : Fragment() {
         auth = Firebase.auth
 
         // Get View Elements
-        val email: EditText = view.findViewById(R.id.email_edit_text_signup)
-        val password: EditText = view.findViewById(R.id.password_edit_text_signup)
-        val signup: Button = view.findViewById(R.id.sign_up_btn)
-        val login: Button = view.findViewById(R.id.to_login_page)
+        val email: EditText = view.findViewById(R.id.edit_text_email_fragment_signup)
+        val password: EditText = view.findViewById(R.id.edit_text_password_fragment_signup)
+        val signup: Button = view.findViewById(R.id.button_signup_fragment_signup)
+        val login: Button = view.findViewById(R.id.button_login_fragment_signup)
 
         signup.setOnClickListener {
             val userText: String = email.text.toString()
@@ -76,7 +76,7 @@ class SignupFragment : Fragment() {
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
 
         // Replace Get Started Fragment with Login Fragment
-        transaction.replace(R.id.get_started_fragment_holder, loginFragment)
+        transaction.replace(R.id.get_started_activity_fragment_holder, loginFragment)
 
         // Commit the transaction
         transaction.commit()

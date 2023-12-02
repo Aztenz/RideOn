@@ -16,9 +16,9 @@
         android:layout_margin="20dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/available_routes_recycler"
+        android:id="@+id/recycler_available_routes_fragment_ar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_available_routes"/>
+        tools:listitem="@layout/item_ar_fragment_available_routes"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -35,7 +35,7 @@
         android:textSize="17sp"
         android:text="@string/get_started_text"/>
     <Button
-        android:id="@+id/get_started_button"
+        android:id="@+id/button_get_started_fragment_gs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"

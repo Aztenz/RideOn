@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val navView: BottomNavigationView = binding.bottomNavView
-        val navController = findNavController(R.id.navHostFragment)
+        val navController = findNavController(R.id.main_activity_fragment_holder)
         navView.setupWithNavController(navController)
 
 
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             // If the activity is created for the first time, add FragmentA
             val homeFragment = HomeFragment()
             supportFragmentManager.beginTransaction()
-                .replace(R.id.navHostFragment, homeFragment)
+                .replace(R.id.main_activity_fragment_holder, homeFragment)
                 .commit()
         }
     }

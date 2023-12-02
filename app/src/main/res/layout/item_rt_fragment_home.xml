@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/border_round">
         <ImageButton
+            android:id="@+id/button_rt_item_rt_fragment_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="30dp"
@@ -21,11 +22,11 @@
 
 
     <TextView
+        android:id="@+id/tv_rt_name_item_rt_fragment_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_margin="10dp"
-        android:text="Bike"/>
+        android:layout_margin="10dp"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

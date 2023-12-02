@@ -17,7 +17,7 @@ class GetStartedFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_get_started, container, false)
 
         // Find the button by its ID
-        val getStartedBtn: Button = view.findViewById(R.id.get_started_button)
+        val getStartedBtn: Button = view.findViewById(R.id.button_get_started_fragment_gs)
 
         // Set a click listener for the button
         getStartedBtn.setOnClickListener {
@@ -26,7 +26,7 @@ class GetStartedFragment : Fragment() {
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
 
             // Replace Get Started Fragment with Login Fragment
-            transaction.replace(R.id.get_started_fragment_holder, loginFragment)
+            transaction.replace(R.id.get_started_activity_fragment_holder, loginFragment)
 
             // Add the transaction to the back stack
             transaction.addToBackStack(null)

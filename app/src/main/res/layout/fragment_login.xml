@@ -12,16 +12,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/banner_image_view_login"
+        android:id="@+id/view_banner_fragment_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/app_banner"
         android:contentDescription="@string/app_banner"/>
 
     <TextView
-        app:layout_constraintStart_toStartOf="@id/banner_image_view_login"
-        app:layout_constraintEnd_toEndOf="@id/banner_image_view_login"
-        app:layout_constraintBottom_toBottomOf="@id/banner_image_view_login"
+        app:layout_constraintStart_toStartOf="@id/view_banner_fragment_login"
+        app:layout_constraintEnd_toEndOf="@id/view_banner_fragment_login"
+        app:layout_constraintBottom_toBottomOf="@id/view_banner_fragment_login"
         android:layout_marginBottom="23dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,8 +30,8 @@
         android:text="@string/your_1_carpooling_app"/>
 
     <TextView
-        android:id="@+id/email_text_view_login"
-        app:layout_constraintTop_toBottomOf="@id/banner_image_view_login"
+        android:id="@+id/view_email_fragment_login"
+        app:layout_constraintTop_toBottomOf="@id/view_banner_fragment_login"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,10 +41,10 @@
         android:layout_marginTop="23dp"/>
 
     <EditText
-        android:id="@+id/email_edit_text_login"
-        app:layout_constraintTop_toBottomOf="@id/email_text_view_login"
-        app:layout_constraintStart_toStartOf="@id/email_text_view_login"
-        app:layout_constraintEnd_toStartOf="@id/email_icon_login"
+        android:id="@+id/edit_text_email_fragment_login"
+        app:layout_constraintTop_toBottomOf="@id/view_email_fragment_login"
+        app:layout_constraintStart_toStartOf="@id/view_email_fragment_login"
+        app:layout_constraintEnd_toStartOf="@id/view_email_icon_fragment_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="24sp"
@@ -54,11 +54,11 @@
         tools:ignore="VisualLintTextFieldSize" />
 
     <ImageView
-        android:id="@+id/email_icon_login"
-        app:layout_constraintStart_toEndOf="@id/email_edit_text_login"
+        android:id="@+id/view_email_icon_fragment_login"
+        app:layout_constraintStart_toEndOf="@id/edit_text_email_fragment_login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/email_edit_text_login"
-        app:layout_constraintBottom_toBottomOf="@id/email_edit_text_login"
+        app:layout_constraintTop_toTopOf="@id/edit_text_email_fragment_login"
+        app:layout_constraintBottom_toBottomOf="@id/edit_text_email_fragment_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/email"
@@ -66,9 +66,9 @@
         android:contentDescription="@string/email"/>
 
     <TextView
-        android:id="@+id/password_text_view_login"
-        app:layout_constraintTop_toBottomOf="@id/email_edit_text_login"
-        app:layout_constraintStart_toStartOf="@id/email_edit_text_login"
+        android:id="@+id/view_password_fragment_login"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_email_fragment_login"
+        app:layout_constraintStart_toStartOf="@id/edit_text_email_fragment_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/password"
@@ -76,10 +76,10 @@
         android:layout_marginTop="23dp"/>
 
     <EditText
-        android:id="@+id/password_edit_text_login"
-        app:layout_constraintTop_toBottomOf="@id/password_text_view_login"
-        app:layout_constraintStart_toStartOf="@id/password_text_view_login"
-        app:layout_constraintEnd_toStartOf="@id/password_icon_login"
+        android:id="@+id/edit_text_password_fragment_login"
+        app:layout_constraintTop_toBottomOf="@id/view_password_fragment_login"
+        app:layout_constraintStart_toStartOf="@id/view_password_fragment_login"
+        app:layout_constraintEnd_toStartOf="@id/view_password_icon_fragment_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="24sp"
@@ -89,11 +89,11 @@
         tools:ignore="VisualLintTextFieldSize" />
 
     <ImageView
-        android:id="@+id/password_icon_login"
-        app:layout_constraintStart_toEndOf="@id/password_edit_text_login"
+        android:id="@+id/view_password_icon_fragment_login"
+        app:layout_constraintStart_toEndOf="@id/edit_text_password_fragment_login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/password_edit_text_login"
-        app:layout_constraintBottom_toBottomOf="@id/password_edit_text_login"
+        app:layout_constraintTop_toTopOf="@id/edit_text_password_fragment_login"
+        app:layout_constraintBottom_toBottomOf="@id/edit_text_password_fragment_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/password"
@@ -101,11 +101,11 @@
         android:contentDescription="@string/password"/>
 
     <Button
-        android:id="@+id/login_btn"
-        app:layout_constraintStart_toStartOf="@+id/password_text_view_login"
-        app:layout_constraintEnd_toEndOf="@id/password_icon_login"
-        app:layout_constraintTop_toBottomOf="@id/password_edit_text_login"
-        app:layout_constraintBottom_toTopOf="@id/not_a_member_text"
+        android:id="@+id/button_login_fragment_login"
+        app:layout_constraintStart_toStartOf="@+id/view_password_fragment_login"
+        app:layout_constraintEnd_toEndOf="@id/view_password_icon_fragment_login"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_password_fragment_login"
+        app:layout_constraintBottom_toTopOf="@id/view_not_a_member_fragment_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/login"
@@ -114,10 +114,10 @@
         tools:ignore="VisualLintButtonSize" />
 
     <TextView
-        android:id="@+id/not_a_member_text"
-        app:layout_constraintStart_toStartOf="@id/login_btn"
-        app:layout_constraintEnd_toStartOf="@+id/to_sign_up_page"
-        app:layout_constraintTop_toBottomOf="@id/login_btn"
+        android:id="@+id/view_not_a_member_fragment_login"
+        app:layout_constraintStart_toStartOf="@id/button_login_fragment_login"
+        app:layout_constraintEnd_toStartOf="@+id/button_signup_fragment_login"
+        app:layout_constraintTop_toBottomOf="@id/button_login_fragment_login"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -125,11 +125,11 @@
         android:text="@string/not_a_member"/>
 
     <Button
-        android:id="@+id/to_sign_up_page"
-        app:layout_constraintStart_toEndOf="@+id/not_a_member_text"
-        app:layout_constraintEnd_toEndOf="@id/login_btn"
-        app:layout_constraintTop_toTopOf="@id/not_a_member_text"
-        app:layout_constraintBottom_toBottomOf="@id/not_a_member_text"
+        android:id="@+id/button_signup_fragment_login"
+        app:layout_constraintStart_toEndOf="@+id/view_not_a_member_fragment_login"
+        app:layout_constraintEnd_toEndOf="@id/button_login_fragment_login"
+        app:layout_constraintTop_toTopOf="@id/view_not_a_member_fragment_login"
+        app:layout_constraintBottom_toBottomOf="@id/view_not_a_member_fragment_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"

@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">RideOn</string>
     <string name="title_home">Home</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="get_started_text">Find the best carpooling options for your daily commute</string>
     <string name="get_started_button">Get Started</string>

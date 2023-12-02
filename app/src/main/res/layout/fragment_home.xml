@@ -9,7 +9,7 @@
     tools:context=".HomeFragment">
 
     <LinearLayout
-        android:id="@+id/upper_page"
+        android:id="@+id/view_upper_page_fragment_home"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,6 +25,7 @@
 
 
             <TextView
+                android:id="@+id/tv_email_fragment_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -37,7 +38,7 @@
                 android:layout_weight="1"/>
 
             <ImageButton
-                android:id="@+id/account_btn"
+                android:id="@+id/button_account_fragment_home"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:scaleType="centerCrop"
@@ -48,6 +49,7 @@
 
         </LinearLayout>
         <TextView
+            android:id="@+id/tv_welcome_fragment_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="34sp"
@@ -57,34 +59,34 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/choose_ride_text"
+        android:id="@+id/view_choose_ride_fragment_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/upper_page"
+        app:layout_constraintTop_toBottomOf="@id/view_upper_page_fragment_home"
         android:textSize="34sp"
         android:layout_margin="20dp"
         android:text="@string/our_available_rides"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ride_type"
-        app:layout_constraintTop_toBottomOf="@+id/choose_ride_text"
+        android:id="@+id/recycler_rides_type_fragment_home"
+        app:layout_constraintTop_toBottomOf="@+id/view_choose_ride_fragment_home"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_ride_type"/>
+        tools:listitem="@layout/item_rt_fragment_home"/>
     
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/available_rides_on_type"
+        android:id="@+id/recycler_available_rides_fragment_home"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ride_type"
+        app:layout_constraintTop_toBottomOf="@id/recycler_rides_type_fragment_home"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/item_available_route_on_type"/>
+        tools:listitem="@layout/item_ar_fragment_home"/>
 
 
 
