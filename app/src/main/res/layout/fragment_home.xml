@@ -30,8 +30,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_margin="20dp"
-                android:text="abc@eng.asu.edu.eg"/>
+                android:layout_margin="20dp"/>
             <Space
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -54,8 +53,7 @@
             android:layout_height="wrap_content"
             android:textSize="34sp"
             android:gravity="center"
-            android:layout_margin="20dp"
-            android:text="Welcome Ali"/>
+            android:layout_margin="20dp"/>
     </LinearLayout>
 
     <TextView

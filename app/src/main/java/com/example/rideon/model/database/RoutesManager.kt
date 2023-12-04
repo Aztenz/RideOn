@@ -1,12 +1,22 @@
-package com.example.rideon.model
+package com.example.rideon.model.database
 
 
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Date
 
-class Database {
-
+class RoutesManager private constructor() {
     private val db = FirebaseFirestore.getInstance()
+
+    companion object {
+        @Volatile
+        private var instance: RoutesManager? = null
+
+        fun getInstance(): RoutesManager {
+            return instance ?: synchronized(this) {
+                instance ?: RoutesManager().also { instance = it }
+            }
+        }
+    }
 
     fun addAvailableRide(
         pickup: String,

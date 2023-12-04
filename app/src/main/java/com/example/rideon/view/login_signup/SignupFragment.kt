@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.rideon.R
+import com.example.rideon.model.database.UserManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -39,6 +40,8 @@ class SignupFragment : Fragment() {
 
             Log.d("myapp101", "User: $userText")
             Log.d("myapp101", "Pass: $passText")
+
+
             if (!(userText.endsWith('@' + "eng.asu.edu.eg"))) {
                 Toast.makeText(requireActivity(),
                     "Email must end with @eng.asu.edu.eg",
@@ -46,22 +49,24 @@ class SignupFragment : Fragment() {
                 ).show()
                 return@setOnClickListener
             }
-            auth.createUserWithEmailAndPassword(userText, passText)
-                .addOnCompleteListener(requireActivity()) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d("myapp101", "createUser:success")
-                        toLogin()
-                        //val user = auth.currentUser
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w("myapp101", "createUser:failure", task.exception)
-                        Toast.makeText(requireActivity(),
-                            "Authentication failed.",
-                            Toast.LENGTH_SHORT,
-                        ).show()
-                    }
-                }
+
+            UserManager.getInstance().registerUser(
+                userText,
+                passText,
+                "User1",
+                onSuccess = {
+                    Log.d("myapp101", "loginUser:success")
+                    toLogin()
+                    //val user = auth.currentUser
+                },
+                onFailure = {
+                    Log.w("myapp101", "loginUser:failure", it)
+                    Toast.makeText(requireActivity(),
+                        "Authentication failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                },
+            )
         }
 
         login.setOnClickListener {

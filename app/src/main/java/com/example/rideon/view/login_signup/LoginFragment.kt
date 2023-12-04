@@ -1,5 +1,6 @@
 package com.example.rideon.view.login_signup
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,12 +13,11 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.rideon.view.MainActivity
 import com.example.rideon.R
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.example.rideon.model.database.UserManager
+
+
 
 class LoginFragment : Fragment() {
-    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,9 +25,6 @@ class LoginFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_login, container, false)
-
-        //initiating firebase auth
-        auth = Firebase.auth
 
         // Get View Elements
         val email: EditText = view.findViewById(R.id.edit_text_email_fragment_login)
@@ -42,24 +39,33 @@ class LoginFragment : Fragment() {
             Log.d("myapp101", "User: $userText")
             Log.d("myapp101", "Pass: $passText")
 
-            auth.signInWithEmailAndPassword(userText, passText)
-                .addOnCompleteListener(requireActivity()) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d("myapp101", "createUser:success")
+            UserManager.getInstance().loginUser(
+                userText,
+                passText,
+                onSuccess = { uid ->
+                    Log.d("myapp101", "createUser:success")
+                    val intent = Intent(requireActivity(), MainActivity::class.java)
+                    startActivity(intent)
 
-                        val intent = Intent(requireActivity(), MainActivity::class.java)
-                        startActivity(intent)
-                        requireActivity().finish()
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w("myapp101", "createUser:failure", task.exception)
-                        Toast.makeText(requireActivity(),
-                            "Error! wrong credentials.",
-                            Toast.LENGTH_SHORT,
-                        ).show()
-                    }
+                    val sharedPrefEditor = context?.getSharedPreferences(
+                        getString(R.string.user_shared_pref),
+                        Context.MODE_PRIVATE
+                    )?.edit()
+
+                    sharedPrefEditor?.putString(getString(R.string.user_email), uid)
+                    sharedPrefEditor?.apply()
+
+                    requireActivity().finish()
+                },
+                onFailure = {
+                    // If sign in fails, display a message to the user.
+                    Log.w("myapp101", "createUser:failure", it)
+                    Toast.makeText(requireActivity(),
+                        "Error! wrong credentials.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
                 }
+            )
         }
 
         signup.setOnClickListener {

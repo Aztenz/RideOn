@@ -23,4 +23,21 @@
     <string name="account">account</string>
     <string name="choose_ride_icon_button">choose ride icon button</string>
     <string name="our_available_rides">Our available rides</string>
+
+
+
+    <string name="not_found">Error 404 not found</string>
+    <string name="user_shared_pref">user_prefs</string>
+    <string name="user_uid">user_uid</string>
+    <string name="user_email">user_email</string>
+    <string name="user_display_name">user_display_name</string>
+    <string name="welcome">Welcome</string>
+
+    <string-array name="ride_types_names">
+        <item>Bikes</item>
+        <item>Cars</item>
+        <item>Vans</item>
+        <item>Busses</item>
+    </string-array>
+
 </resources>
