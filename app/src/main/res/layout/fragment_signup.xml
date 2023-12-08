@@ -135,8 +135,9 @@
         android:textSize="18sp"
         android:background="@color/transparent"
         android:text="@string/login"
-        android:textColor="@color/button_dark"
-        style="@style/button_text_no_forced_uppercase"/>
+        android:textColor="@color/m3_sys_color_dark_primary"
+        style="@style/button_text_no_forced_uppercase"
+        tools:ignore="PrivateResource" />
 
 
 

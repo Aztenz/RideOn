@@ -12,9 +12,15 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rideon.R
 import com.example.rideon.model.database.RoutesManager
+import com.example.rideon.view.passenger.HomeFragment
 
-class RidesTypeAdapter(private val availableRidesRecycler: RecyclerView):
+class RidesTypeAdapter(
+    private val availableRidesRecycler : RecyclerView,
+    private val fragment : HomeFragment
+) :
     RecyclerView.Adapter<RidesTypeAdapter.RidesTypeViewHolder>() {
+
+    private lateinit var noRides : TextView
 
     private var images = arrayOf(
         R.drawable.motorcycle,
@@ -29,42 +35,46 @@ class RidesTypeAdapter(private val availableRidesRecycler: RecyclerView):
         "Busses",
     )
 
-    private lateinit var fragment: Context
-    private var selectedItemPosition: Int = 0  // Initialize with the position of the first item
+    private var selectedItemPosition : Int = 0// Initialize with the position of the first item
 
-    init {
-        // Invoke the logic for the first item when the adapter is created
-        RoutesManager.getInstance().getAvailableRidesOnType(
-            rideType = 1,
-            onSuccess = { rides ->
-                availableRidesRecycler.adapter = RidesOnTypeAdapter(rides)
-            },
-            onFailure = { exception ->
-                Toast.makeText(fragment, "Error! ${exception}.", Toast.LENGTH_SHORT).show()
-            }
-        )
-    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RidesTypeViewHolder {
-        val context: Context = parent.context
-        fragment = context
-        val inflater: LayoutInflater = LayoutInflater.from(context)
-        val itemView: View = inflater.inflate(
+    override fun onCreateViewHolder(parent : ViewGroup, viewType : Int) : RidesTypeViewHolder {
+        val context : Context = parent.context
+        val inflater : LayoutInflater = LayoutInflater.from(context)
+        val itemView : View = inflater.inflate(
             R.layout.item_rt_fragment_home, parent
             ,false)
+        noRides = fragment
+            .requireView()
+            .findViewById(R.id.tv_no_rides_fragment_home)
 
         return RidesTypeViewHolder(itemView)
     }
 
-    override fun getItemCount(): Int {
+    override fun getItemCount() : Int {
         return names.size
     }
 
     @SuppressLint("NotifyDataSetChanged", "UseCompatLoadingForDrawables")
-    override fun onBindViewHolder(holder: RidesTypeViewHolder,
-                                  @SuppressLint("RecyclerView") position: Int) {
-        val name: String = names[position]
-        val image: Int = images[position]
+    override fun onBindViewHolder(holder : RidesTypeViewHolder,
+                                  @SuppressLint("RecyclerView") position : Int) {
+
+        RoutesManager.getInstance().getAvailableRidesOnType(
+            rideType = 1,
+            onSuccess = { rides ->
+                availableRidesRecycler.adapter = RidesOnTypeAdapter(rides,
+                    fragment.context
+                )
+            },
+            onFailure = { exception ->
+                Toast.makeText(fragment.context, "Error! ${exception}.",
+                    Toast.LENGTH_SHORT).show()
+            }
+        )
+        itemOnClick(selectedItemPosition)
+
+        val name : String = names[position]
+        val image : Int = images[position]
 
         holder.textView.text = name
         holder.imgBtn.setImageResource(image)
@@ -72,31 +82,44 @@ class RidesTypeAdapter(private val availableRidesRecycler: RecyclerView):
         val isSelected = position == selectedItemPosition
 
         if (isSelected) {
-            holder.frame.background = fragment.getDrawable(R.drawable.border_round_clicked)
+            holder.frame.background =
+                fragment.context?.getDrawable(R.drawable.border_round_clicked)
         } else {
-            holder.frame.background = fragment.getDrawable(R.drawable.border_round)
+            holder.frame.background = fragment.context?.getDrawable(R.drawable.border_round)
         }
 
-        holder.imgBtn.setOnClickListener {
+        holder.imgBtn.setOnClickListener{
             selectedItemPosition = position
             notifyDataSetChanged()
-
-            // Your existing logic here
-            RoutesManager.getInstance().getAvailableRidesOnType(
-                rideType = 1,
-                onSuccess = { rides ->
-                    availableRidesRecycler.adapter = RidesOnTypeAdapter(rides)
-                },
-                onFailure = { exception ->
-                    Toast.makeText(fragment, "Error! ${exception}.", Toast.LENGTH_SHORT).show()
-                }
-            )
+            itemOnClick(position)
         }
     }
+    @SuppressLint("NotifyDataSetChanged")
+    private fun itemOnClick(position : Int) {
+        RoutesManager.getInstance().getAvailableRidesOnType(
+            rideType = position,
+            onSuccess = { rides ->
+                if(rides.isEmpty()){
+                    availableRidesRecycler.visibility = View.GONE
+                    noRides.visibility = View.VISIBLE
+                    return@getAvailableRidesOnType
+                } else {
+                    noRides.visibility = View.GONE
+                    availableRidesRecycler.visibility = View.VISIBLE
+                }
+                val adapter = RidesOnTypeAdapter(rides, fragment.context)
+                availableRidesRecycler.adapter = adapter
+                adapter.notifyDataSetChanged()
+            },
+            onFailure = { exception ->
+                Toast.makeText(fragment.context, "Error! ${exception}.", Toast.LENGTH_SHORT).show()
+            }
+        )
+    }
 
-    inner class RidesTypeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imgBtn: ImageButton = itemView.findViewById(R.id.button_rt_item_rt_fragment_home)
-        val textView: TextView = itemView.findViewById(R.id.tv_rt_name_item_rt_fragment_home)
-        val frame: FrameLayout = itemView.findViewById(R.id.frame_rt_item_rt_fragment_home)
+    inner class RidesTypeViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+        val imgBtn : ImageButton = itemView.findViewById(R.id.button_rt_item_rt_fragment_home)
+        val textView : TextView = itemView.findViewById(R.id.tv_rt_name_item_rt_fragment_home)
+        val frame : FrameLayout = itemView.findViewById(R.id.frame_rt_item_rt_fragment_home)
     }
 }

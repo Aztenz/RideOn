@@ -35,6 +35,7 @@ class SignupFragment : Fragment() {
         val login: Button = view.findViewById(R.id.button_login_fragment_signup)
 
         signup.setOnClickListener {
+            signup.isEnabled = false
             val userText: String = email.text.toString()
             val passText: String = password.text.toString()
 
@@ -47,6 +48,7 @@ class SignupFragment : Fragment() {
                     "Email must end with @eng.asu.edu.eg",
                     Toast.LENGTH_SHORT,
                 ).show()
+                signup.isEnabled = true
                 return@setOnClickListener
             }
 
@@ -65,6 +67,7 @@ class SignupFragment : Fragment() {
                         "Authentication failed.",
                         Toast.LENGTH_SHORT,
                     ).show()
+                    signup.isEnabled = true
                 },
             )
         }

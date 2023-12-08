@@ -1,4 +1,4 @@
-package com.example.rideon.view
+package com.example.rideon.view.passenger
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -22,14 +22,6 @@ class MainActivity : AppCompatActivity() {
             val navView: BottomNavigationView = binding.bottomNavView
             val navController = findNavController(R.id.main_activity_fragment_holder)
             navView.setupWithNavController(navController)
-
-            if (savedInstanceState == null) {
-                // If the activity is created for the first time, add FragmentA
-                val homeFragment = HomeFragment()
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.main_activity_fragment_holder, homeFragment)
-                    .commit()
-            }
         }
     }
 }

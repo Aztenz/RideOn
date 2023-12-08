@@ -11,10 +11,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.example.rideon.view.MainActivity
+import com.example.rideon.view.passenger.MainActivity
 import com.example.rideon.R
 import com.example.rideon.model.database.UserManager
-
 
 
 class LoginFragment : Fragment() {
@@ -33,8 +32,15 @@ class LoginFragment : Fragment() {
         val signup: Button = view.findViewById(R.id.button_signup_fragment_login)
 
         login.setOnClickListener {
+            login.isEnabled = false
             val userText: String = email.text.toString()
             val passText: String = password.text.toString()
+
+            if(userText.isEmpty() || passText.isEmpty()) {
+                login.isEnabled = true
+                return@setOnClickListener
+            }
+
 
             Log.d("myapp101", "User: $userText")
             Log.d("myapp101", "Pass: $passText")
@@ -64,6 +70,7 @@ class LoginFragment : Fragment() {
                         "Error! wrong credentials.",
                         Toast.LENGTH_SHORT,
                     ).show()
+                    login.isEnabled = true
                 }
             )
         }

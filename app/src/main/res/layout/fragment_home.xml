@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:theme="@style/Theme.Material3.Dark.NoActionBar"
     android:background="@color/primary"
-    tools:context=".view.HomeFragment">
+    tools:context=".view.passenger.HomeFragment">
 
     <LinearLayout
         android:id="@+id/view_upper_page_fragment_home"
@@ -87,6 +87,18 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
         tools:listitem="@layout/item_ar_fragment_home"/>
+
+    <TextView
+        android:id="@+id/tv_no_rides_fragment_home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recycler_rides_type_fragment_home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/not_found"
+        android:textSize="34sp"
+        android:gravity="center"/>
 
 
 

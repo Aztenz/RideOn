@@ -1,4 +1,4 @@
-package com.example.rideon.view
+package com.example.rideon.view.passenger
 
 import android.content.Context
 import android.os.Bundle
@@ -20,14 +20,17 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(
+            R.layout.fragment_home,
+            container, false)
 
         //Handle Recyclers
         val rideTypesRecycler: RecyclerView = view
             .findViewById(R.id.recycler_rides_type_fragment_home)
 
         rideTypesRecycler.adapter = RidesTypeAdapter(
-            view.findViewById(R.id.recycler_available_rides_fragment_home))
+            view.findViewById(R.id.recycler_available_rides_fragment_home),
+            this)
 
 
         //Handle Welcome message, Email Text view and account button

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/Theme.Material3.Dark.NoActionBar"
+    android:background="@color/primary"
+    tools:context=".view.passenger.OrderHistoryFragment">
+
+    <TextView
+        android:id="@+id/view_oh_fragment_oh"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/view_current_fragment_oh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/my_orders"
+        android:textSize="34sp"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:id="@+id/view_current_fragment_oh"
+        app:layout_constraintStart_toStartOf="@id/view_oh_fragment_oh"
+        app:layout_constraintTop_toBottomOf="@id/view_oh_fragment_oh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="24sp"
+        android:text="@string/currently_active"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_active_ride_fragment_oh"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_current_fragment_oh"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_current_active_fragment_oh"
+        tools:itemCount="1"/>
+
+    <TextView
+        android:id="@+id/view_past_fragment_oh"
+        app:layout_constraintStart_toStartOf="@id/recycler_active_ride_fragment_oh"
+        app:layout_constraintTop_toBottomOf="@id/recycler_active_ride_fragment_oh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="24sp"
+        android:text="@string/past_orders"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_past_ride_fragment_oh"
+        app:layout_constraintStart_toStartOf="@id/recycler_active_ride_fragment_oh"
+        app:layout_constraintEnd_toEndOf="@id/recycler_active_ride_fragment_oh"
+        app:layout_constraintTop_toBottomOf="@id/view_past_fragment_oh"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_margin="20dp"
+        android:clipToPadding="false"
+        tools:listitem="@layout/item_past_fragment_oh"/>
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

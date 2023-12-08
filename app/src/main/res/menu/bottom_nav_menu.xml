@@ -6,4 +6,15 @@
         android:icon="@drawable/nav_home"
         android:title="@string/title_home" />
 
+    <item
+        android:id="@+id/navigation_available_rides"
+        android:icon="@drawable/car"
+        android:title="@string/rides"/>
+
+    <item
+        android:id="@+id/navigation_order_history"
+        android:icon="@drawable/orders"
+        android:title="@string/orders"/>
+
+
 </menu>

@@ -47,14 +47,14 @@ class RoutesManager private constructor() {
     }
 
     fun getAvailableRides(
-        onSuccess: (List<AvailableRide>) -> Unit,
+        onSuccess: (List<Ride>) -> Unit,
         onFailure: (Exception) -> Unit
     ) {
         val ridesCollection = db.collection("available_rides")
 
         ridesCollection.get()
             .addOnSuccessListener { result ->
-                val availableRides = mutableListOf<AvailableRide>()
+                val rides = mutableListOf<Ride>()
 
                 for (document in result) {
                     val pickup = document.getString("pickup") ?: ""
@@ -63,11 +63,11 @@ class RoutesManager private constructor() {
                     val price = document.getDouble("price") ?: 0.0
                     val type = document.getLong("type")?.toInt() ?: 0
 
-                    val ride = AvailableRide(pickup, dropOff, time, price, type)
-                    availableRides.add(ride)
+                    val ride = Ride(pickup, dropOff, time, price, type)
+                    rides.add(ride)
                 }
 
-                onSuccess.invoke(availableRides)
+                onSuccess.invoke(rides)
             }
             .addOnFailureListener { exception ->
                 onFailure.invoke(exception)
@@ -76,7 +76,7 @@ class RoutesManager private constructor() {
 
     fun getAvailableRidesOnType(
         rideType: Int,
-        onSuccess: (List<AvailableRide>) -> Unit,
+        onSuccess: (List<Ride>) -> Unit,
         onFailure: (Exception) -> Unit
     ) {
         val ridesCollection = db.collection("available_rides")
@@ -84,7 +84,7 @@ class RoutesManager private constructor() {
         ridesCollection.whereEqualTo("type", rideType)
             .get()
             .addOnSuccessListener { result ->
-                val availableRides = mutableListOf<AvailableRide>()
+                val rides = mutableListOf<Ride>()
                 for (document in result) {
                     val pickup = document.getString("pickup") ?: ""
                     val dropOff = document.getString("dropOff") ?: ""
@@ -92,11 +92,11 @@ class RoutesManager private constructor() {
                     val price = document.getDouble("price") ?: 0.0
                     val type = document.getLong("type")?.toInt() ?: 0
 
-                    val ride = AvailableRide(pickup, dropOff, time, price, type)
-                    availableRides.add(ride)
+                    val ride = Ride(pickup, dropOff, time, price, type)
+                    rides.add(ride)
                 }
 
-                onSuccess.invoke(availableRides)
+                onSuccess.invoke(rides)
             }
             .addOnFailureListener { exception ->
                 onFailure.invoke(exception)
@@ -106,7 +106,7 @@ class RoutesManager private constructor() {
     // Add more methods for other operations as needed
 
     // Data class for ride details
-    data class AvailableRide(
+    data class Ride(
         val pickup: String,
         val dropOff: String,
         val time: Date,

@@ -13,5 +13,9 @@
     <color name="hint_white">#3CEEEEEE</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="secondary_dark">#222222</color>
-    <color name="button_dark">#99D0BCFF</color>
+    <color name="button_dark">#D0BCFF</color>
+
+
+    <color name="semi_transparent_dark">#80000000</color>
+
 </resources>

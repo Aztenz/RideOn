@@ -133,10 +133,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:textColor="@color/button_dark"
+        android:textColor="@color/m3_sys_color_dark_primary"
         android:background="@color/transparent"
         android:text="@string/sign_up"
-        style="@style/button_text_no_forced_uppercase"/>
+        style="@style/button_text_no_forced_uppercase"
+        tools:ignore="PrivateResource" />
 
 
 
