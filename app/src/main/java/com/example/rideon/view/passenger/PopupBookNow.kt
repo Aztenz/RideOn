@@ -11,7 +11,7 @@ import android.widget.Button
 import android.widget.PopupWindow
 import com.example.rideon.R
 
-class PopupManager private constructor(private val context: Context) {
+class PopupBookNow private constructor(private val context: Context) {
 
     private var popupWindow: PopupWindow? = null
     private var dismissListener: (() -> Unit)? = null
@@ -42,7 +42,7 @@ class PopupManager private constructor(private val context: Context) {
             dismissListener?.invoke()
         }
 
-        val btnClosePopup = popupView.findViewById<Button>(R.id.btnClosePopup)
+        val btnClosePopup = popupView.findViewById<Button>(R.id.button_cancel_popup_bn)
         btnClosePopup.setOnClickListener {
             popupWindow?.dismiss()
         }
@@ -75,11 +75,11 @@ class PopupManager private constructor(private val context: Context) {
     companion object {
         @SuppressLint("StaticFieldLeak")
         @Volatile
-        private var instance: PopupManager? = null
+        private var instance: PopupBookNow? = null
 
-        fun getInstance(context: Context): PopupManager {
+        fun getInstance(context: Context): PopupBookNow {
             return instance ?: synchronized(this) {
-                instance ?: PopupManager(context).also { instance = it }
+                instance ?: PopupBookNow(context).also { instance = it }
             }
         }
     }

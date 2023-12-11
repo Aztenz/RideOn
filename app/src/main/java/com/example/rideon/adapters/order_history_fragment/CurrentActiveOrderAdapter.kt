@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rideon.R
 import com.example.rideon.model.database.RoutesManager
-import com.example.rideon.view.passenger.PopupManager
+import com.example.rideon.view.passenger.PopupBookNow
 import java.text.SimpleDateFormat
 
 class CurrentActiveOrderAdapter(
@@ -18,7 +18,7 @@ class CurrentActiveOrderAdapter(
     private val popupContext: Context?)
     : RecyclerView.Adapter<CurrentActiveOrderAdapter.CurrentActiveOrderViewHolder>() {
 
-    private lateinit var popupManager: PopupManager
+    private lateinit var popupBookNow: PopupBookNow
 
     @SuppressLint("SimpleDateFormat")
     private val pattern = SimpleDateFormat("d MMM - h:MM a")
@@ -33,7 +33,7 @@ class CurrentActiveOrderAdapter(
             R.layout.item_current_active_fragment_oh,
             parent,
             false)
-        popupManager = popupContext?.let { PopupManager.getInstance(it) }!!
+        popupBookNow = popupContext?.let { PopupBookNow.getInstance(it) }!!
         return CurrentActiveOrderViewHolder(itemView)
     }
 
@@ -50,10 +50,18 @@ class CurrentActiveOrderAdapter(
         holder.timeTV.text = pattern.format(activeRide.time)
 
         holder.trackBtn.setOnClickListener {
-
+            holder.trackBtn.isEnabled = false
+            popupBookNow.showPopup(it)
+            popupBookNow.setOnDismissListener {
+                holder.trackBtn.isEnabled = true
+            }
         }
         holder.cancelBtn.setOnClickListener {
-
+            holder.cancelBtn.isEnabled = false
+            popupBookNow.showPopup(it)
+            popupBookNow.setOnDismissListener {
+                holder.cancelBtn.isEnabled = true
+            }
         }
     }
 

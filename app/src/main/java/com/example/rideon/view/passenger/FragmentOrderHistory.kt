@@ -9,9 +9,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rideon.R
 import com.example.rideon.adapters.order_history_fragment.CurrentActiveOrderAdapter
+import com.example.rideon.adapters.order_history_fragment.PastOrderAdapter
 import com.example.rideon.model.database.RoutesManager
 
-class OrderHistoryFragment : Fragment() {
+class FragmentOrderHistory : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,10 +25,14 @@ class OrderHistoryFragment : Fragment() {
         val activeRideRecycler: RecyclerView = view
             .findViewById(R.id.recycler_active_ride_fragment_oh)
 
+        val pastRidesRecycler: RecyclerView = view
+            .findViewById(R.id.recycler_past_ride_fragment_oh)
+
         RoutesManager.getInstance().getAvailableRides(
             onFailure = {},
             onSuccess = {
                 activeRideRecycler.adapter = CurrentActiveOrderAdapter(it[0], this.context)
+                pastRidesRecycler.adapter = PastOrderAdapter(it, this.context)
             })
 
         return view

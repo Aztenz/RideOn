@@ -12,11 +12,11 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rideon.R
 import com.example.rideon.model.database.RoutesManager
-import com.example.rideon.view.passenger.HomeFragment
+import com.example.rideon.view.passenger.FragmentPassengerHome
 
 class RidesTypeAdapter(
     private val availableRidesRecycler : RecyclerView,
-    private val fragment : HomeFragment
+    private val fragment : FragmentPassengerHome
 ) :
     RecyclerView.Adapter<RidesTypeAdapter.RidesTypeViewHolder>() {
 

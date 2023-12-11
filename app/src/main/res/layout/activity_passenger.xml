@@ -4,10 +4,10 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/Theme.Material3.Dark.NoActionBar">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/main_activity_fragment_holder"
+        android:id="@+id/passenger_fragment_holder"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -15,17 +15,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottom_nav_view"
-        app:navGraph="@navigation/mobile_navigation"/>
+        app:layout_constraintBottom_toTopOf="@id/passenger_bottom_nav"
+        app:navGraph="@navigation/passenger_navigation"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav_view"
+        android:id="@+id/passenger_bottom_nav"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/main_activity_fragment_holder"
+        app:layout_constraintTop_toBottomOf="@id/passenger_fragment_holder"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/passenger_bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

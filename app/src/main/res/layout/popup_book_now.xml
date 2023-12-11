@@ -1,10 +1,9 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:theme="@style/Theme.Material3.Dark"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:background="@drawable/border_round"
     android:padding="16dp">
 
@@ -26,8 +25,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/your_new_balance_will_be"
+            android:layout_marginEnd="10dp"
             android:textSize="18sp"/>
         <TextView
+            android:id="@+id/tv_new_balance_popup_bn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
@@ -36,18 +37,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
+            android:layout_marginStart="5dp"
             android:text="@string/egp"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/button_bn_popup_bn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Request Ride"/>
 
-    <Button
-        android:id="@+id/btnClosePopup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/transparent"
-        android:textColor="@color/m3_sys_color_dark_primary"
-        android:text="Close Popup"
-        tools:ignore="PrivateResource" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/button_cancel_popup_bn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Cancel"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </LinearLayout>

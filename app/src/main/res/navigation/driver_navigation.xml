@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/driver_navigation.xml"
+    app:startDestination="@id/navigation_requests">
+
+    <fragment
+        android:id="@+id/navigation_requests"
+        android:name="com.example.rideon.view.driver.FragmentRequests"
+        android:label="fragment_requests"
+        tools:layout="@layout/fragment_requests" />
+
+    <fragment
+        android:id="@+id/navigation_add_ride"
+        android:name="com.example.rideon.view.driver.FragmentAddRide"
+        android:label="fragment_add_ride"
+        tools:layout="@layout/fragment_add_ride" />
+
+    <fragment
+        android:id="@+id/navigation_d_profile"
+        android:name="com.example.rideon.view.driver.FragmentDProfile"
+        android:label="fragment_d_profile"
+        tools:layout="@layout/fragment_d_profile" />
+
+
+</navigation>

@@ -11,9 +11,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.example.rideon.view.passenger.MainActivity
+import com.example.rideon.view.passenger.ActivityPassenger
 import com.example.rideon.R
 import com.example.rideon.model.database.UserManager
+import com.example.rideon.view.driver.ActivityDriver
 
 
 class LoginFragment : Fragment() {
@@ -50,7 +51,7 @@ class LoginFragment : Fragment() {
                 passText,
                 onSuccess = { uid ->
                     Log.d("myapp101", "createUser:success")
-                    val intent = Intent(requireActivity(), MainActivity::class.java)
+                    val intent = Intent(requireActivity(), ActivityDriver::class.java)
                     startActivity(intent)
 
                     val sharedPrefEditor = context?.getSharedPreferences(

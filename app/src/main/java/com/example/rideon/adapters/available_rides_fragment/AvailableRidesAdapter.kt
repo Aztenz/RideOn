@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rideon.R
 import com.example.rideon.model.database.RoutesManager
-import com.example.rideon.view.passenger.PopupManager
+import com.example.rideon.view.passenger.PopupBookNow
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -20,7 +20,7 @@ class AvailableRidesAdapter(
     private val popupContext: Context?)
     : RecyclerView.Adapter<AvailableRidesAdapter.AvailableRidesViewHolder>() {
 
-    private lateinit var popupManager: PopupManager
+    private lateinit var popupBookNow: PopupBookNow
 
     @SuppressLint("SimpleDateFormat")
     private val pattern = SimpleDateFormat("d MMM - h:MM a")
@@ -40,7 +40,7 @@ class AvailableRidesAdapter(
             false)
 
 
-        popupManager = popupContext?.let { PopupManager.getInstance(it) }!!
+        popupBookNow = popupContext?.let { PopupBookNow.getInstance(it) }!!
 
         return AvailableRidesViewHolder(itemView)
     }
@@ -64,8 +64,8 @@ class AvailableRidesAdapter(
         holder.rideTypeIcon.setImageResource(images[rides[position].type])
         holder.bookNowBtn.setOnClickListener {
             holder.bookNowBtn.isEnabled = false
-            popupManager.showPopup(it)
-            popupManager.setOnDismissListener {
+            popupBookNow.showPopup(it)
+            popupBookNow.setOnDismissListener {
                 holder.bookNowBtn.isEnabled = true
             }
         }

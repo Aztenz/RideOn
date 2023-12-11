@@ -11,7 +11,7 @@ import com.example.rideon.R
 import com.example.rideon.adapters.available_rides_fragment.AvailableRidesAdapter
 import com.example.rideon.model.database.RoutesManager
 
-class AvailableRoutesFragment : Fragment() {
+class FragmentAvailableRoutes : Fragment() {
 
     private lateinit var availableRidesRecycler: RecyclerView
 

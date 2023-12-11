@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rideon.R
 import com.example.rideon.model.database.RoutesManager
-import com.example.rideon.view.passenger.PopupManager
+import com.example.rideon.view.passenger.PopupBookNow
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -20,7 +20,7 @@ class RidesOnTypeAdapter(
     ,private val popupContext: Context?) :
     RecyclerView.Adapter<RidesOnTypeAdapter.RidesTypeViewHolder>() {
 
-    private lateinit var popupManager: PopupManager
+    private lateinit var popupBookNow: PopupBookNow
 
     @SuppressLint("SimpleDateFormat")
     private val pattern = SimpleDateFormat("d MMM - h:MM a")
@@ -34,7 +34,7 @@ class RidesOnTypeAdapter(
             false)
 
 
-        popupManager = popupContext?.let { PopupManager.getInstance(it) }!!
+        popupBookNow = popupContext?.let { PopupBookNow.getInstance(it) }!!
 
         return RidesTypeViewHolder(itemView)
     }
@@ -56,8 +56,8 @@ class RidesOnTypeAdapter(
         holder.timeTV.text = pattern.format(time)
         holder.bookNowBtn.setOnClickListener {
             holder.bookNowBtn.isEnabled = false
-            popupManager.showPopup(it)
-            popupManager.setOnDismissListener {
+            popupBookNow.showPopup(it)
+            popupBookNow.setOnDismissListener {
                 holder.bookNowBtn.isEnabled = true
             }
         }
@@ -65,10 +65,10 @@ class RidesOnTypeAdapter(
 
     // RidesTypeViewHolder is now an inner class
     inner class RidesTypeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val pickupTV: TextView = itemView.findViewById(R.id.tv_pickup_item_ar_fragment_home)
-        val dropOffTV: TextView = itemView.findViewById(R.id.tv_drop_off_item_ar_fragment_home)
-        val timeTV: TextView = itemView.findViewById(R.id.tv_date_item_ar_fragment_home)
-        val priceTV: TextView = itemView.findViewById(R.id.tv_price_item_ar_fragment_home)
-        val bookNowBtn: Button = itemView.findViewById(R.id.button_book_now_item_ar_fragment_home)
+        val pickupTV: TextView = itemView.findViewById(R.id.tv_pickup_item_request_fragment_request)
+        val dropOffTV: TextView = itemView.findViewById(R.id.tv_drop_off_item_request_fragment_request)
+        val timeTV: TextView = itemView.findViewById(R.id.tv_date_item_request_fragment_request)
+        val priceTV: TextView = itemView.findViewById(R.id.tv_price_item_request_fragment_request)
+        val bookNowBtn: Button = itemView.findViewById(R.id.button_accept_item_request_fragment_request)
     }
 }

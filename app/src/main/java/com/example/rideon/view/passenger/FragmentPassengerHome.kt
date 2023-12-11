@@ -2,7 +2,6 @@ package com.example.rideon.view.passenger
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import com.example.rideon.R
 import com.example.rideon.adapters.home_fragment.RidesTypeAdapter
 import com.example.rideon.model.database.UserManager
 
-class HomeFragment : Fragment() {
+class FragmentPassengerHome : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,7 +48,8 @@ class HomeFragment : Fragment() {
             mailTV.text = emailText
 
             accountBtn.setOnClickListener {
-                Log.d("myapp101", uid)
+                val bottomSheetFragment = PopupOrderInfo()
+                bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
             }
         }
         return view
