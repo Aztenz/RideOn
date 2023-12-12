@@ -63,7 +63,7 @@ class RoutesManager private constructor() {
                     val price = document.getDouble("price") ?: 0.0
                     val type = document.getLong("type")?.toInt() ?: 0
 
-                    val ride = Ride(pickup, dropOff, time, price, type)
+                    val ride = Ride(pickup, dropOff, time, price, type, 0)
                     rides.add(ride)
                 }
 
@@ -91,7 +91,7 @@ class RoutesManager private constructor() {
                     val time = document.getDate("time") ?: Date()
                     val price = document.getDouble("price") ?: 0.0
                     val type = document.getLong("type")?.toInt() ?: 0
-                    val ride = Ride(pickup, dropOff, time, price, type)
+                    val ride = Ride(pickup, dropOff, time, price, type, 0)
                     rides.add(ride)
                 }
 
@@ -110,6 +110,7 @@ class RoutesManager private constructor() {
         val dropOff: String,
         val time: Date,
         val price: Double,
-        val type: Int
+        val type: Int,
+        val seats: Int
     )
 }

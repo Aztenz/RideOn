@@ -49,11 +49,18 @@ class RidesOnTypeAdapter(
         val dropOff: String = rides[position].dropOff
         val time: Date = rides[position].time
         val price: Double = rides[position].price
+        val seats: Int = rides[position].seats
 
         // Set item views based on your views and data model
         holder.pickupTV.text = pickup
         holder.dropOffTV.text = dropOff
         holder.timeTV.text = pattern.format(time)
+        holder.seatsTV.text = seats.toString()
+        holder.priceTV.text = price.toString()
+
+        if (rides[position].seats==0)
+            holder.bookNowBtn.isEnabled = false
+
         holder.bookNowBtn.setOnClickListener {
             holder.bookNowBtn.isEnabled = false
             popupBookNow.showPopup(it)
@@ -69,6 +76,7 @@ class RidesOnTypeAdapter(
         val dropOffTV: TextView = itemView.findViewById(R.id.tv_drop_off_item_request_fragment_request)
         val timeTV: TextView = itemView.findViewById(R.id.tv_date_item_request_fragment_request)
         val priceTV: TextView = itemView.findViewById(R.id.tv_price_item_request_fragment_request)
+        val seatsTV: TextView = itemView.findViewById(R.id.text_view_seats)
         val bookNowBtn: Button = itemView.findViewById(R.id.button_accept_item_request_fragment_request)
     }
 }

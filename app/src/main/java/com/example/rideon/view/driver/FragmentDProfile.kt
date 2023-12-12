@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.rideon.R
+import com.example.rideon.view.passenger.PopupOrderStatus
 
 class FragmentDProfile : Fragment() {
 
@@ -32,15 +33,18 @@ class FragmentDProfile : Fragment() {
         nameTV.text = "Omar Mohamed"
 
         currentRidesBtn.setOnClickListener {
-
+            val popupOfferedRides = PopupOfferedRides()
+            popupOfferedRides.show(childFragmentManager, popupOfferedRides.tag)
         }
 
         pastOrdersBtn.setOnClickListener {
-
+            val popupPastOrders = PopupPastOrders()
+            popupPastOrders.show(childFragmentManager, popupPastOrders.tag)
         }
 
         myWalletBtn.setOnClickListener {
-
+            val popupMyWallet = PopupMyWallet()
+            popupMyWallet.show(childFragmentManager, popupMyWallet.tag)
         }
 
         logoutBtn.setOnClickListener {

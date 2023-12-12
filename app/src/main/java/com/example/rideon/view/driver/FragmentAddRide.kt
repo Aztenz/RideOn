@@ -48,13 +48,47 @@ class FragmentAddRide : Fragment() {
 
         //TODO: add new button to validate
         confirmBtn.setOnClickListener {
-            val selectedCalendar = Calendar.getInstance().apply {
-                set(datePicker.year,
-                    datePicker.month,
-                    datePicker.dayOfMonth,
-                    7,
-                    30)
+            val pickupTime: String? =
+                getTime(
+                    pickupEdit,
+                    gate3Pickup,
+                    gate4Pickup)
+
+            val dropOffTime: String? =
+                getTime(
+                    dropOffEdit,
+                    gate3DropOff,
+                    gate4DropOff)
+            if(pickupTime.isNullOrBlank() || dropOffTime.isNullOrBlank()) {
+                Log.d("myapp101", "invalid locations")
+                return@setOnClickListener
             }
+
+            val selectedCalendar: Calendar
+            val hoursToCompare : Int
+            if(morningTime.isChecked) {
+                selectedCalendar = Calendar.getInstance().apply {
+                    set(datePicker.year,
+                        datePicker.month,
+                        datePicker.dayOfMonth,
+                        7,
+                        30)
+                }
+                hoursToCompare = 9
+            } else if(eveningTime.isChecked) {
+                selectedCalendar = Calendar.getInstance().apply {
+                    set(datePicker.year,
+                        datePicker.month,
+                        datePicker.dayOfMonth,
+                        17,
+                        30)
+                }
+                hoursToCompare = 4
+            } else {
+                Log.d("myapp101", "invalid")
+                return@setOnClickListener
+            }
+
 
             val timeDifferenceInMillis =
                 selectedCalendar.timeInMillis - currentCalendar.timeInMillis
@@ -64,7 +98,8 @@ class FragmentAddRide : Fragment() {
             val minutes = TimeUnit.MILLISECONDS
                 .toMinutes(timeDifferenceInMillis)%
                     TimeUnit.HOURS.toMinutes(1)
-            val isRideTimeValid = hours > 9 || (hours.toInt() == 9 && minutes >= 30)
+
+            val isRideTimeValid = hours > hoursToCompare || (hours.toInt() == hoursToCompare && minutes >= 30)
             if(isRideTimeValid){
                 Log.d("myapp101", "Success")
             }
@@ -109,4 +144,18 @@ class FragmentAddRide : Fragment() {
 
         return view
     }
+
+    private fun getTime(edit: EditText,
+                        radio1: RadioButton,
+                        radio2: RadioButton): String? {
+        return when {
+            radio1.isChecked -> "Gate 3"
+            radio2.isChecked -> "Gate 4"
+            edit.text.isNotEmpty() -> edit.text.toString()
+            edit.text.toString().contains("\\b\\s*gate\\s*3\\s*\\b\n") -> null
+            edit.text.toString() == "\\b\\s*gate\\s*4\\s*\\b\n" -> null
+            else -> null
+        }
+    }
+
 }
