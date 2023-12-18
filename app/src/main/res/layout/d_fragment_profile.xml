@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/primary"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    tools:context=".controller.passenger.fragments.Profile">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/my_profile"
+        android:textSize="34sp"
+        android:layout_margin="20dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <ImageView
+        android:id="@+id/image_view_profile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="20dp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/profile" />
+
+    <TextView
+        android:id="@+id/text_view_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/button_current_rides"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:text="Current Rides"
+        android:textSize="25sp"
+        tools:ignore="VisualLintButtonSize" />
+
+
+    <Button
+        android:id="@+id/button_past_orders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:text="Past Orders"
+        android:textSize="25sp"
+        tools:ignore="VisualLintButtonSize" />
+
+    <Button
+        android:id="@+id/button_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:text="My Wallet"
+        android:textSize="25sp"
+        tools:ignore="VisualLintButtonSize" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/secondary_dark"
+        android:layout_margin="40dp"/>
+
+    <Button
+        android:id="@+id/button_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:text="Log out"
+        android:textSize="25sp"
+        tools:ignore="VisualLintButtonSize" />
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
