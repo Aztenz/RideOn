@@ -1,4 +1,4 @@
-package com.example.rideon.controller.driver
+package com.example.rideon.controller.passenger
 
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
@@ -11,8 +11,10 @@ object Config {
     const val RIDE_STATUS_AVAILABLE = "Available"
     const val RIDE_STATUS_REJECTED = "rejected"
     const val ROLE_TYPE_PASSENGER = "passengers"
+    const val RIDE_STATUS_PENDING = "pending"
     const val MORNING_HOUR = 7
     const val MORNING_MINUTE = 30
+    const val REQUIRED_FIELDS = "please fill all the fields correctly"
     const val EVENING_HOUR = 17
     const val EVENING_MINUTE = MORNING_MINUTE
     const val SECONDS = 0

@@ -1,12 +1,11 @@
 package com.example.rideon.model.database.firebase
 
+import com.example.rideon.controller.passenger.Config
 import com.example.rideon.model.data_classes.BookingRequest
 import com.example.rideon.model.data_classes.Ride
 import com.example.rideon.model.data_classes.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FieldValue
-import java.util.*
 
 class PassengerManager private constructor() {
 
@@ -34,10 +33,11 @@ class PassengerManager private constructor() {
     }
 
     fun getAvailableRidesByType(
-        vehicleType: String,
+        vehicleType: Int,
         onSuccess: (List<Ride>) -> Unit,
         onFailure: (Exception) -> Unit
     ) {
+
         fireStore.collection("rides")
             .whereEqualTo("vehicleType", vehicleType)
             .get()
@@ -53,13 +53,13 @@ class PassengerManager private constructor() {
     }
 
     fun getPassengerCurrentRide(
+        passenger: User,
         onSuccess: (Ride?) -> Unit,
         onFailure: (Exception) -> Unit
     ) {
-        val passengerId = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
         fireStore.collection("bookingRequests")
-            .whereEqualTo("passengerId", passengerId)
+            .whereEqualTo("passengerId", passenger.userId)
             .whereEqualTo("status", "confirmed")
             .get()
             .addOnSuccessListener { result ->
@@ -87,13 +87,13 @@ class PassengerManager private constructor() {
     }
 
     fun getPassengerPastRides(
+        passenger: User,
         onSuccess: (List<Ride>) -> Unit,
         onFailure: (Exception) -> Unit
     ) {
-        val passengerId = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
         fireStore.collection("passengerRideHistory")
-            .document(passengerId)
+            .document(passenger.userId)
             .collection("rideHistory")
             .get()
             .addOnSuccessListener { result ->
@@ -135,14 +135,18 @@ class PassengerManager private constructor() {
         }
     }
 
-    fun updatePassengerData(user: User) {
-        val passengerId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+    fun updatePassengerData(passenger: User) {
 
-        fireStore.collection("users")
-            .document("passengers")
-            .collection(passengerId)
-            .document("userData")
-            .set(user)
+        fireStore.collection("passengers")
+            .document(passenger.userId)
+            .set(passenger)
+
+    }
+
+    fun updatePassengerWallet(userId: String, newBalance: Double) {
+        fireStore.collection("passengers")
+            .document(userId)
+            .update("walletBalance", newBalance)
     }
 
     fun bookRide(
@@ -154,7 +158,7 @@ class PassengerManager private constructor() {
             passengerId = passenger.userId,
             driverId = ride.driverId,
             rideId = ride.rideId,
-            status = "pending",
+            status = Config.RIDE_STATUS_PENDING,
             rideDate = ride.date,
             origin = ride.origin,
             destination = ride.destination,
@@ -168,7 +172,17 @@ class PassengerManager private constructor() {
                     .document(it.id)
                     .update("requestId", it.id)
                     .addOnSuccessListener {
-                        val x = 5
+                        fireStore.collection("passengers")
+                            .document(passenger.userId)
+                            .update("walletBalance", passenger.walletBalance - ride.price)
+                            .addOnSuccessListener {
+                                ride.availableSeats--
+                                if(ride.availableSeats==0)
+                                    ride.status = "occupied"
+                                fireStore.collection("rides")
+                                    .document(ride.rideId)
+                                    .set(ride)
+                            }
                     }
             }
     }
@@ -177,16 +191,6 @@ class PassengerManager private constructor() {
         fireStore.collection("bookingRequests")
             .document(requestId)
             .delete()
-    }
-
-    fun updatePassengerWallet(balance: Int) {
-        val passengerId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-
-        fireStore.collection("users")
-            .document("passengers")
-            .collection(passengerId)
-            .document("userData")
-            .update("walletBalance", FieldValue.increment(balance.toLong()))
     }
 
 }

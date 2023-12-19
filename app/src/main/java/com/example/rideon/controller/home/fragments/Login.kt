@@ -28,15 +28,17 @@ class Login : Fragment() {
 
     private val accountManager = AccountManager.instance
     private val roomAccountManager = RoomAccountManager.instance
-    private val networkUtil = NetworkUtils.getInstance(requireContext())
+    private lateinit var networkUtil: NetworkUtils
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.gs_fragment_login, container, false)
         val login: Button = view.findViewById(R.id.button_login)
+        val signup: Button = view.findViewById(R.id.button_signup)
         val progressBar: ProgressBar = view.findViewById(R.id.progress_bar)
         val layout: LinearLayout = view.findViewById(R.id.login_layout)
+        networkUtil = NetworkUtils.getInstance(requireContext())
 
         //handle if the user is already logged in the system
         roomAccountManager.getUserCountFromRoom(
@@ -52,8 +54,10 @@ class Login : Fragment() {
                         networkUtil.isConnected.observe(viewLifecycleOwner) { isConnected ->
                             if (isConnected) {
                                 login.isEnabled = true
+                                signup.isEnabled = true
                             } else {
                                 login.isEnabled = false
+                                signup.isEnabled = false
                                 Toast.makeText(requireActivity(),
                                     "no internet connection",
                                     Toast.LENGTH_LONG).show()
@@ -67,7 +71,6 @@ class Login : Fragment() {
         val email: EditText = view.findViewById(R.id.edit_email)
         val password: EditText = view.findViewById(R.id.edit_password)
 
-        val signup: Button = view.findViewById(R.id.button_signup)
         val emailInput: TextInputLayout = view.findViewById(R.id.input_email)
         val passInput: TextInputLayout = view.findViewById(R.id.input_password)
         val radioGroup: RadioGroup = view.findViewById(R.id.radio_group_user_type)

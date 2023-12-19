@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.rideon.R
+import com.example.rideon.controller.driver.Config
 import com.example.rideon.controller.driver.popups.Wallet
 import com.example.rideon.controller.driver.popups.OfferedRides
 import com.example.rideon.controller.driver.popups.PastOrders
@@ -27,7 +28,7 @@ class Profile : Fragment() {
     private val driverManager = DriverManager.instance
     private val roomAccountManager = RoomAccountManager.instance
     private lateinit var me: User
-    private val networkUtil = NetworkUtils.getInstance(requireContext())
+    private lateinit var networkUtil: NetworkUtils
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +37,8 @@ class Profile : Fragment() {
         val view =  inflater.inflate(
             R.layout.d_fragment_profile,
             container, false)
+
+        networkUtil = NetworkUtils.getInstance(requireContext())
 
         val nameTV: TextView = view.findViewById(R.id.text_view_name)
 
@@ -63,7 +66,7 @@ class Profile : Fragment() {
                 currentRidesBtn.isEnabled = false
                 pastOrdersBtn.isEnabled = false
                 Toast.makeText(requireActivity(),
-                    "no internet connection",
+                    Config.NO_INTERNET,
                     Toast.LENGTH_LONG).show()
             }
         }

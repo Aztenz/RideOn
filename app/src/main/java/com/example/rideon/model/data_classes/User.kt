@@ -10,7 +10,7 @@ data class User(
     val userId: String = Config.DEFAULT_STRING,
     val email: String = Config.DEFAULT_STRING,
     val name: String = Config.DEFAULT_STRING,
-    val walletBalance: Double = Config.DEFAULT_DOUBLE,
+    var walletBalance: Double = Config.DEFAULT_DOUBLE,
     var userType: String = Config.DEFAULT_STRING
     // Add other user details as needed
 )

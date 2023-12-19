@@ -4,8 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="20dp"
-    android:padding="4dp"
-    android:theme="@style/Theme.Material3.Dark.NoActionBar">
+    android:padding="4dp">
 
 
     <ImageView
@@ -91,8 +90,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:background="@color/transparent"
-        android:textColor="@color/m3_sys_color_dark_primary"
         android:text="@string/book_now"/>
 
 

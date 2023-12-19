@@ -1,6 +1,5 @@
 package com.example.rideon.controller.driver.adapters
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,17 +11,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rideon.R
+import com.example.rideon.controller.driver.Config
 import com.example.rideon.model.data_classes.BookingRequest
 import com.example.rideon.model.database.firebase.DriverManager
-import java.text.SimpleDateFormat
 
 class Requests(
     private val fragment: Fragment,
     private val rideBookings: MutableList<BookingRequest>)
     : RecyclerView.Adapter<Requests.RequestsViewHolder>() {
-
-    @SuppressLint("SimpleDateFormat")
-    private val pattern = SimpleDateFormat("d MMM - h:MM a")
 
     private val driverManager = DriverManager.instance
 
@@ -47,10 +43,10 @@ class Requests(
     override fun onBindViewHolder(
         holder: RequestsViewHolder,
         position: Int) {
-        Log.d("myapp101", rideBookings[position].requestId)
+        Log.d(Config.LOG_TAG, rideBookings[position].requestId)
         holder.pickupTV.text = rideBookings[position].origin
         holder.dropOffTV.text = rideBookings[position].destination
-        holder.dateTV.text = pattern.format(rideBookings[position].rideDate)
+        holder.dateTV.text = Config.DATE_PATTERN.format(rideBookings[position].rideDate)
         holder.emailTV.text = rideBookings[position].passengerEmail
 
         holder.acceptBtn.setOnClickListener {
@@ -74,10 +70,10 @@ class Requests(
             driverManager.getRideData(
                 rideId = rideBookings[position].rideId,
                 onSuccess = {
-                    it.status = "rejected"
+                    it.status = Config.RIDE_STATUS_REJECTED
                     driverManager.addRideToHistory(
                         userId = rideBookings[position].passengerId,
-                        userType = "passengers",
+                        userType = Config.ROLE_TYPE_PASSENGER,
                         ride = it,
                         onSuccess = {
                             rideBookings.removeAt(position)

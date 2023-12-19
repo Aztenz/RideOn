@@ -11,6 +11,15 @@ class UserRepository(private val userDao: UserDao) {
         userDao.insertUser(user)
     }
 
+    suspend fun updateUser(user: User) {
+        userDao.updateUser(user)
+    }
+
+    suspend fun updateUserWallet(user: User, newBalance: Double) {
+        user.walletBalance = newBalance
+        userDao.updateUser(user)
+    }
+
     fun getUser(userID: String): LiveData<User> {
         return userDao.getUser(userID)
     }

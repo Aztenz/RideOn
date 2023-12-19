@@ -8,13 +8,17 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rideon.R
 import com.example.rideon.controller.passenger.fragments.Home
+import com.example.rideon.model.data_classes.User
+import com.example.rideon.model.database.firebase.PassengerManager
 
 class RidesType(
     private val availableRidesRecycler : RecyclerView,
-    private val fragment : Home
+    private val fragment : Home,
+    private val passenger: User
 ) :
     RecyclerView.Adapter<RidesType.RidesTypeViewHolder>() {
 
@@ -44,7 +48,7 @@ class RidesType(
             ,false)
         noRides = fragment
             .requireView()
-            .findViewById(R.id.tv_no_rides_fragment_home)
+            .findViewById(R.id.text_view_no_rides)
 
         return RidesTypeViewHolder(itemView)
     }
@@ -83,25 +87,30 @@ class RidesType(
     }
     @SuppressLint("NotifyDataSetChanged")
     private fun itemOnClick(position : Int) {
-//        RoutesManager.getInstance().getAvailableRidesOnType(
-//            rideType = position,
-//            onSuccess = { rides ->
-//                if(rides.isEmpty()){
-//                    availableRidesRecycler.visibility = View.GONE
-//                    noRides.visibility = View.VISIBLE
-//                    return@getAvailableRidesOnType
-//                } else {
-//                    noRides.visibility = View.GONE
-//                    availableRidesRecycler.visibility = View.VISIBLE
-//                }
-//                val adapter = RidesOnTypeAdapter(rides, fragment.context)
-//                availableRidesRecycler.adapter = adapter
-//                adapter.notifyDataSetChanged()
-//            },
-//            onFailure = { exception ->
-//                Toast.makeText(fragment.context, "Error! ${exception}.", Toast.LENGTH_SHORT).show()
-//            }
-//        )
+        PassengerManager.instance.getAvailableRidesByType(
+            vehicleType = position,
+            onSuccess = { rides ->
+                if(rides.isEmpty()){
+                    availableRidesRecycler.visibility = View.INVISIBLE
+                    noRides.visibility = View.VISIBLE
+                    return@getAvailableRidesByType
+                } else {
+                    noRides.visibility = View.INVISIBLE
+                    availableRidesRecycler.visibility = View.VISIBLE
+                }
+                val adapter = AvailableRideOnType(
+                    rides = rides, popupContext =  fragment.context, passenger = passenger)
+
+                availableRidesRecycler.adapter = adapter
+                adapter.notifyDataSetChanged()
+            },
+            onFailure = {
+                Toast.makeText(
+                    fragment.context,
+                    "Unexpected error please check your network",
+                    Toast.LENGTH_SHORT).show()
+            }
+        )
     }
 
     inner class RidesTypeViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {

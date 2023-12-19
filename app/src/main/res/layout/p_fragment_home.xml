@@ -9,7 +9,7 @@
     tools:context=".controller.passenger.fragments.Home">
 
     <LinearLayout
-        android:id="@+id/view_upper_page_fragment_home"
+        android:id="@+id/view_upper_linear"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,9 +23,8 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-
             <TextView
-                android:id="@+id/tv_email_fragment_home"
+                android:id="@+id/text_view_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -37,7 +36,7 @@
                 android:layout_weight="1"/>
 
             <ImageButton
-                android:id="@+id/button_account_fragment_home"
+                android:id="@+id/button_account"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:scaleType="centerCrop"
@@ -47,29 +46,41 @@
                 android:contentDescription="@string/account" />
 
         </LinearLayout>
-        <TextView
-            android:id="@+id/tv_welcome_fragment_home"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="34sp"
+        <LinearLayout
             android:gravity="center"
-            android:layout_margin="20dp"/>
+            android:layout_width="match_parent"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="34sp"
+                android:text="@string/welcome"/>
+            <TextView
+                android:id="@+id/text_view_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textSize="34sp"/>
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
-        android:id="@+id/view_choose_ride_fragment_home"
+        android:id="@+id/view_available_rides"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_upper_page_fragment_home"
+        app:layout_constraintTop_toBottomOf="@id/view_upper_linear"
         android:textSize="34sp"
         android:layout_margin="20dp"
         android:text="@string/our_available_rides"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_rides_type_fragment_home"
-        app:layout_constraintTop_toBottomOf="@+id/view_choose_ride_fragment_home"
+        android:id="@+id/recycler_rides_type"
+        app:layout_constraintTop_toBottomOf="@+id/view_available_rides"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,22 +88,22 @@
         tools:listitem="@layout/p_item_ride_type"/>
     
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_available_rides_fragment_home"
+        android:id="@+id/recycler_available_rides"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recycler_rides_type_fragment_home"
+        app:layout_constraintTop_toBottomOf="@id/recycler_rides_type"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
         tools:listitem="@layout/p_item_available_ride_on_type"/>
 
     <TextView
-        android:id="@+id/tv_no_rides_fragment_home"
+        android:id="@+id/text_view_no_rides"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recycler_rides_type_fragment_home"
+        app:layout_constraintTop_toBottomOf="@id/recycler_rides_type"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="0dp"
         android:layout_height="0dp"

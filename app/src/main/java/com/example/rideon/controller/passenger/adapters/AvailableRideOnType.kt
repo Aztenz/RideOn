@@ -66,8 +66,10 @@ class AvailableRideOnType(
 
         val balanceAfterRide = passenger.walletBalance - rides[position].price
 
-        if(balanceAfterRide<0)
+        if(balanceAfterRide<0) {
+            holder.bookNowBtn.text = "Can't Afford"
             holder.bookNowBtn.isEnabled = false
+        }
 
         holder.bookNowBtn.setOnClickListener {
             holder.bookNowBtn.isEnabled = false

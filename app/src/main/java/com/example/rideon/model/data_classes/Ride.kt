@@ -8,7 +8,7 @@ data class Ride(
     val driverId: String = Config.DEFAULT_STRING,
     val origin: String = Config.DEFAULT_STRING,
     val destination: String = Config.DEFAULT_STRING,
-    val availableSeats: Int = Config.DEFAULT_INT,
+    var availableSeats: Int = Config.DEFAULT_INT,
     val vehicleType: Int = Config.DEFAULT_INT,
     val date: Date = Config.DEFAULT_DATE,
     val price: Double = Config.DEFAULT_DOUBLE,

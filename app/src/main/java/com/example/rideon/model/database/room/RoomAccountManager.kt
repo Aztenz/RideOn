@@ -56,9 +56,23 @@ class RoomAccountManager private constructor(): AndroidViewModel(application = R
         }
     }
 
+    fun updateUser(user: User){
+        viewModelScope.launch {
+            userRepository.updateUser(user)
+        }
+    }
+
+    fun updateUserWallet(user: User, newBalance: Double){
+        viewModelScope.launch {
+            userRepository.updateUserWallet(user, newBalance)
+        }
+    }
+
     fun clearRoomDB(){
         viewModelScope.launch {
             userRepository.clearUsers()
         }
     }
+
+
 }

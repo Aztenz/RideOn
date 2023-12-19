@@ -54,7 +54,7 @@ class BookNow private constructor(private val context: Context) {
         val bookNowBtn: Button = popupView.findViewById(R.id.button_bn_popup_bn)
         val newBalanceTV: TextView = popupView.findViewById(R.id.tv_new_balance_popup_bn)
 
-        newBalanceTV.text = passenger.walletBalance.toString()
+        newBalanceTV.text = (passenger.walletBalance - ride.price).toString()
 
         closBtn.setOnClickListener {
             popupWindow?.dismiss()

@@ -1,6 +1,5 @@
 package com.example.rideon.controller.driver.adapters
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,15 +8,13 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rideon.R
+import com.example.rideon.controller.driver.Config
 import com.example.rideon.model.data_classes.Ride
 import com.example.rideon.model.database.firebase.DriverManager
-import java.text.SimpleDateFormat
 
 class OfferedRides(
     private val offeredRides: List<Ride>)
     : RecyclerView.Adapter<OfferedRides.OfferedRidesViewHolder>() {
-    @SuppressLint("SimpleDateFormat")
-    private val pattern = SimpleDateFormat("d MMM - h:mm a")
 
     private val driverManager: DriverManager = DriverManager.instance
 
@@ -28,7 +25,7 @@ class OfferedRides(
         val context: Context = parent.context
         val inflater: LayoutInflater = LayoutInflater.from(context)
         val itemView: View =  inflater.inflate(
-            R.layout.d_item_available_ride,
+            R.layout.d_item_offered_ride,
             parent,
             false)
 
@@ -45,8 +42,9 @@ class OfferedRides(
 
         holder.pickupTV.text = offeredRides[position].origin
         holder.dropOffTV.text = offeredRides[position].destination
-        holder.dateTV.text = pattern.format(offeredRides[position].date)
+        holder.dateTV.text = Config.DATE_PATTERN.format(offeredRides[position].date)
         holder.priceTV.text = offeredRides[position].price.toString()
+        holder.seatsTV.text = offeredRides[position].availableSeats.toString()
         holder.cancelBtn.setOnClickListener {
             holder.cancelBtn.isEnabled = false
             driverManager.cancelOfferedRide(
@@ -67,6 +65,8 @@ class OfferedRides(
             .findViewById(R.id.text_view_drop_off)
         val dateTV: TextView = itemView
             .findViewById(R.id.text_view_date)
+        val seatsTV: TextView = itemView
+            .findViewById(R.id.text_view_seats)
         val priceTV: TextView = itemView
             .findViewById(R.id.text_view_price)
         val cancelBtn: Button = itemView

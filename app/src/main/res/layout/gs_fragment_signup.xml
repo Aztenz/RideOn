@@ -114,16 +114,32 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/button_signup"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/sign_up"
-            android:textSize="24sp"
+            android:gravity="center"
             android:layout_marginTop="10dp"
-            style="@style/button_no_uppercase"
-            tools:ignore="VisualLintButtonSize" />
+            android:orientation="horizontal">
+            <Space
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/button_signup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_up"
+                android:textSize="24sp"
+                android:layout_weight="1"
+                style="@style/button_no_uppercase"
+                tools:ignore="VisualLintButtonSize" />
+            <Space
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

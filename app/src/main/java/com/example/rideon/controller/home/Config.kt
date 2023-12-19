@@ -15,4 +15,6 @@ object Config {
     const val INTENT_NAME = "name"
     const val INTENT_WALLET_BALANCE = "wallet_balance"
     const val INVALID_USER = "Invalid user type"
+    const val NO_INTERNET = "No internet connection"
+
 }

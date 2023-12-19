@@ -48,7 +48,7 @@ class AddRide : Fragment() {
     private val driverManager = DriverManager.instance
     private val roomAccountManager = RoomAccountManager.instance
     private lateinit var me: User
-    private val networkUtil = NetworkUtils.getInstance(requireContext())
+    private lateinit var networkUtil: NetworkUtils
 
 
     override fun onCreateView(
@@ -57,8 +57,9 @@ class AddRide : Fragment() {
     ): View? {
         val view = inflater.inflate(
             R.layout.d_fragment_add_ride,
-            container, false
-        )
+            container, false)
+
+        networkUtil = NetworkUtils.getInstance(requireContext())
 
         //get user
         roomAccountManager.getLoggedInUser(
@@ -77,7 +78,7 @@ class AddRide : Fragment() {
             } else {
                 confirmBtn.isEnabled = false
                 Toast.makeText(requireActivity(),
-                    "no internet connection",
+                    Config.NO_INTERNET,
                     Toast.LENGTH_LONG).show()
             }
         }

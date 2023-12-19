@@ -1,6 +1,5 @@
 package com.example.rideon.controller.driver.adapters
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -8,15 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rideon.R
+import com.example.rideon.controller.driver.Config
 import com.example.rideon.model.data_classes.Ride
-import java.text.SimpleDateFormat
 
 class PastOrders(
     private val pastOrders: List<Ride>)
     : RecyclerView.Adapter<PastOrders.PastOrdersViewHolder>() {
-
-    @SuppressLint("SimpleDateFormat")
-    private val pattern = SimpleDateFormat("d MMM - h:MM a")
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -42,7 +38,7 @@ class PastOrders(
 
         holder.pickupTV.text = pastOrders[position].origin
         holder.dropOffTV.text = pastOrders[position].destination
-        holder.timeTV.text = pattern.format(pastOrders[position].date)
+        holder.timeTV.text = Config.DATE_PATTERN.format(pastOrders[position].date)
         holder.statusTV.text = pastOrders[position].status
 
     }

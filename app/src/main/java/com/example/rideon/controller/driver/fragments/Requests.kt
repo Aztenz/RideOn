@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rideon.R
+import com.example.rideon.controller.driver.Config.DRIVER_NOT_FOUND
 import com.example.rideon.controller.driver.adapters.Requests
 import com.example.rideon.model.database.firebase.DriverManager
 import com.example.rideon.model.database.room.RoomAccountManager
@@ -45,7 +46,7 @@ class Requests : Fragment() {
             },
             onFailure = {
                 Toast.makeText(requireActivity(),
-                "Can't find Driver",
+                DRIVER_NOT_FOUND,
                 Toast.LENGTH_SHORT).show()
             }
         )
