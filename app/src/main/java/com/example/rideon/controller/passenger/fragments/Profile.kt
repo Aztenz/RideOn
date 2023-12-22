@@ -10,7 +10,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.navigation.findNavController
 import com.example.rideon.R
 import com.example.rideon.controller.home.activity.GetStarted
 import com.example.rideon.controller.passenger.Config
@@ -36,15 +35,13 @@ class Profile : Fragment() {
         networkUtil = NetworkUtils.getInstance(requireContext())
 
         val bottomNavigationView: BottomNavigationView = requireActivity().findViewById(R.id.passenger_bottom_nav)
-        val navController = requireActivity().findNavController(R.id.passenger_fragment_holder)
 
 
-        val profileImage: ImageView = view.findViewById(R.id.iv_profile_image_fragment_profile)
+        val profileImage: ImageView = view.findViewById(R.id.image_view_profile)
         val nameTV: TextView = view.findViewById(R.id.text_view_name)
         val emailTV: TextView = view.findViewById(R.id.text_view_email)
         val pastOrdersBtn: Button = view.findViewById(R.id.button_po_fragment_profile)
         val myWalletBtn: Button = view.findViewById(R.id.button_wallet_fragment_profile)
-        val settingBtn: Button = view.findViewById(R.id.button_settings_fragment_profile)
         val logoutBtn: Button = view.findViewById(R.id.button_logout_fragment_profile)
 
         profileImage.setImageResource(R.drawable.account)
@@ -61,16 +58,12 @@ class Profile : Fragment() {
                 .instance.logoutUser( onSuccess = {}, onFailure = {} ) } )
 
         // Observe network status
-        networkUtil.isConnected.observe(viewLifecycleOwner) { isConnected ->
-            if (isConnected) {
-                settingBtn.isEnabled = true
-            } else {
-                settingBtn.isEnabled = false
+        networkUtil.isConnected.observe(viewLifecycleOwner) {
+            if(!it){
                 Toast.makeText(requireActivity(),
                     Config.NO_INTERNET,
                     Toast.LENGTH_LONG).show()
-            }
-        }
+            } }
 
 
         pastOrdersBtn.setOnClickListener {
@@ -83,11 +76,6 @@ class Profile : Fragment() {
                 passenger = me
             )
             wallet.show(childFragmentManager, wallet.tag)
-        }
-
-        settingBtn.setOnClickListener {
-            bottomNavigationView.visibility = View.GONE
-            navController.navigate(R.id.navigate_profile_to_profile_settings)
         }
 
         logoutBtn.setOnClickListener {

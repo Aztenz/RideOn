@@ -47,8 +47,7 @@ class Wallet(
             val newBalance = passenger.walletBalance + amountToAdd.toString().toDouble()
             PassengerManager.instance.updatePassengerWallet(
                 userId = passenger.userId,
-                newBalance = newBalance
-                )
+                newBalance = newBalance)
             RoomAccountManager.instance.updateUserWallet(passenger, newBalance)
             balanceTV.text = newBalance.toString()
         }

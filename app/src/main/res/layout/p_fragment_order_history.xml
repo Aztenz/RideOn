@@ -1,75 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:theme="@style/Theme.Material3.Dark.NoActionBar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:background="@color/primary"
+    android:orientation="vertical"
     tools:context=".controller.passenger.fragments.OrderHistory">
 
-    <TextView
-        android:id="@+id/view_oh_fragment_oh"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/view_current_fragment_oh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/my_orders"
-        android:textSize="34sp"
-        android:layout_margin="20dp"/>
-
-    <TextView
-        android:id="@+id/view_current_fragment_oh"
-        app:layout_constraintStart_toStartOf="@id/view_oh_fragment_oh"
-        app:layout_constraintTop_toBottomOf="@id/view_oh_fragment_oh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textSize="24sp"
-        android:text="@string/currently_active"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_active_ride_fragment_oh"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_current_fragment_oh"
-        android:layout_margin="20dp"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/p_item_active_booking"
-        tools:itemCount="1"/>
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_orders"
+            android:textSize="34sp"
+            android:layout_margin="20dp"/>
 
-    <TextView
-        android:id="@+id/view_past_fragment_oh"
-        app:layout_constraintStart_toStartOf="@id/recycler_active_ride_fragment_oh"
-        app:layout_constraintTop_toBottomOf="@id/recycler_active_ride_fragment_oh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textSize="24sp"
-        android:text="@string/past_orders"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:textSize="24sp"
+            android:text="@string/current_order"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_past_ride_fragment_oh"
-        app:layout_constraintStart_toStartOf="@id/recycler_active_ride_fragment_oh"
-        app:layout_constraintEnd_toEndOf="@id/recycler_active_ride_fragment_oh"
-        app:layout_constraintTop_toBottomOf="@id/view_past_fragment_oh"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_margin="20dp"
-        android:clipToPadding="false"
-        tools:listitem="@layout/p_item_past_order"/>
+        <TextView
+            android:id="@+id/text_view_no_current_order"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:textSize="34sp"
+            android:textAlignment="center"
+            android:text="No current orders"/>
 
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/layout_current_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:background="@drawable/border_round">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20dp"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/text_view_current_pickup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:text="pickup"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/arrow_forward"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:contentDescription="@string/arrow"/>
+                <TextView
+                    android:id="@+id/text_view_current_drop_off"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:text="DropOff"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="-10dp"
+                android:layout_marginBottom="-10dp"
+                android:background="@color/primary"/>
+            <TextView
+                android:id="@+id/text_view_current_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:text="Dec 12 1002"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="-10dp"
+                android:layout_marginBottom="-10dp"
+                android:background="@color/primary"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="-30dp">
+                <Button
+                    android:id="@+id/button_current_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/details"
+                    android:layout_marginEnd="10dp"
+                    style="?android:attr/buttonBarButtonStyle" />
+                <Button
+                    android:id="@+id/button_current_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancel"
+                    android:layout_marginStart="10dp"
+                    style="?android:attr/buttonBarButtonStyle" />
+            </LinearLayout>
+        </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:textSize="24sp"
+            android:text="@string/past_orders"/>
 
+        <TextView
+            android:id="@+id/text_view_no_past_orders"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:textSize="34sp"
+            android:textAlignment="center"
+            android:text="No past orders"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_past_orders"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:clipToPadding="false"
+            tools:listitem="@layout/p_item_past_order"/>
+    </LinearLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -156,33 +156,41 @@ class AddRide : Fragment() {
         val pickupLocation = getLocation(pickupEdit, gate3Pickup, gate4Pickup)
         val dropOffLocation = getLocation(dropOffEdit, gate3DropOff, gate4DropOff)
         val priceText = priceEdit.text
+
         if (pickupLocation.isNullOrBlank() ||
             dropOffLocation.isNullOrBlank() ||
             priceText.isNullOrBlank()) {
-            Log.d(Config.LOG_TAG, Config.MISSING_FIELDS)
+            Toast.makeText(requireActivity(),
+                Config.WRONG_INPUT,
+                Toast.LENGTH_SHORT)
+                .show()
             return
         }
-        val isRideTimeValid = isRideTimeValid()
-        if (isRideTimeValid) {
-            driverManager.offerRide(
-                Ride(
-                    driverId = me.userId,
-                    origin = pickupLocation.toString(),
-                    destination = dropOffLocation.toString(),
-                    availableSeats = type.second,
-                    vehicleType = type.first,
-                    date = Timestamp(getTime().time / 1000, 0).toDate(),
-                    price = priceText.toString().toDouble(),
-                    status = Config.RIDE_STATUS_AVAILABLE
-                ),
-                onSuccess = {
-                    Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
-                },
-                onFailure = {
-                    Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
-                }
-            )
+        if (!isRideTimeValid()) {
+            Toast.makeText(requireActivity(),
+                Config.INVALID_TIME_SELECTION,
+                Toast.LENGTH_SHORT)
+                .show()
+            return
         }
+        driverManager.offerRide(
+            Ride(
+                driverId = me.userId,
+                origin = pickupLocation.toString(),
+                destination = dropOffLocation.toString(),
+                availableSeats = type.second,
+                vehicleType = type.first,
+                date = Timestamp(getTime().time / 1000, 0).toDate(),
+                price = priceText.toString().toDouble(),
+                status = Config.RIDE_STATUS_AVAILABLE
+            ),
+            onSuccess = {
+                Toast.makeText(requireActivity(), Config.SUCCESS, Toast.LENGTH_SHORT).show()
+            },
+            onFailure = {
+                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+            }
+        )
     }
 
     private fun enablePickupRadioButtons() {

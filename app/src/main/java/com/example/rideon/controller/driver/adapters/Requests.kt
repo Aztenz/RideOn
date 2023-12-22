@@ -13,11 +13,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.rideon.R
 import com.example.rideon.controller.driver.Config
 import com.example.rideon.model.data_classes.BookingRequest
+import com.example.rideon.model.data_classes.User
 import com.example.rideon.model.database.firebase.DriverManager
+import com.example.rideon.model.database.room.RoomAccountManager
 
 class Requests(
     private val fragment: Fragment,
-    private val rideBookings: MutableList<BookingRequest>)
+    private val rideBookings: MutableList<BookingRequest>,
+    private val user: User)
     : RecyclerView.Adapter<Requests.RequestsViewHolder>() {
 
     private val driverManager = DriverManager.instance
@@ -56,6 +59,7 @@ class Requests(
                 onSuccess = {
                     rideBookings.removeAt(position)
                     notifyItemRemoved(position)
+                    RoomAccountManager.instance.updateUserWallet(user, it)
                 },
                 onFailure = {
                     Toast.makeText(

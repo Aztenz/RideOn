@@ -31,7 +31,8 @@ class OfferedRides(private val offeredRides: List<Ride>,
             return view
         }
 
-        offeredRidesRecycler.adapter = OfferedRides(offeredRides = offeredRides)
+        offeredRidesRecycler.adapter =
+            OfferedRides(offeredRides = offeredRides as MutableList<Ride>)
 
 
         return view

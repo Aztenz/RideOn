@@ -39,7 +39,7 @@ class Requests : Fragment() {
                 DriverManager.instance.getBookingRequests(
                     driverId = user.userId,
                     onSuccess = {
-                        requestsRecycler.adapter = Requests(this@Requests, it.toMutableList())
+                        requestsRecycler.adapter = Requests(this@Requests, it.toMutableList(), user)
                     },
                     onFailure = {}
                 )

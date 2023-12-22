@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rideon.R
 import com.example.rideon.controller.passenger.fragments.Home
+import com.example.rideon.model.data_classes.Ride
 import com.example.rideon.model.data_classes.User
 import com.example.rideon.model.database.firebase.PassengerManager
 
@@ -88,6 +89,7 @@ class RidesType(
     @SuppressLint("NotifyDataSetChanged")
     private fun itemOnClick(position : Int) {
         PassengerManager.instance.getAvailableRidesByType(
+            passengerId = passenger.userId,
             vehicleType = position,
             onSuccess = { rides ->
                 if(rides.isEmpty()){
@@ -99,7 +101,7 @@ class RidesType(
                     availableRidesRecycler.visibility = View.VISIBLE
                 }
                 val adapter = AvailableRideOnType(
-                    rides = rides, popupContext =  fragment.context, passenger = passenger)
+                    rides = rides as MutableList<Ride>, popupContext =  fragment.context, passenger = passenger)
 
                 availableRidesRecycler.adapter = adapter
                 adapter.notifyDataSetChanged()

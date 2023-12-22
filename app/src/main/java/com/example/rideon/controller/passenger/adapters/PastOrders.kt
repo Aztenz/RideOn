@@ -7,16 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rideon.R
 import com.example.rideon.model.data_classes.Ride
 import com.example.rideon.controller.passenger.popups.BookNow
+import com.example.rideon.controller.passenger.popups.OrderInfo
 import java.text.SimpleDateFormat
 import java.util.Date
 
 class PastOrders(
     private val pastRides: List<Ride>,
-    private val popupContext: Context?)
+    private val driverNames: List<String>,
+    private val popupContext: Context?,
+    private val fragment: Fragment
+    )
     : RecyclerView.Adapter<PastOrders.PastOrderViewHolder>() {
 
     private lateinit var bookNow: BookNow
@@ -55,21 +60,23 @@ class PastOrders(
         holder.dropOffTV.text = dropOff
         holder.timeTV.text = pattern.format(time)
         holder.detailsBtn.setOnClickListener {
-//            holder.detailsBtn.isEnabled = false
-//            popupBookNow.showPopup(it)
-//            popupBookNow.setOnDismissListener {
-//                holder.detailsBtn.isEnabled = true
-//            }
+            val orderInfo = OrderInfo(
+                ride = pastRides[position],
+                status = pastRides[position].status,
+                driverName = driverNames[position],
+                isCancelable = false,
+                onCancelled = {}
+            )
+            orderInfo.show(fragment.childFragmentManager, orderInfo.tag)
         }
-
     }
 
 
     inner class PastOrderViewHolder(itemView: View)
         : RecyclerView.ViewHolder(itemView){
-        val pickupTV: TextView = itemView.findViewById(R.id.tv_pickup_item_past_fragment_oh)
-        val dropOffTV: TextView = itemView.findViewById(R.id.tv_drop_off_item_past_fragment_oh)
-        val timeTV: TextView = itemView.findViewById(R.id.tv_date_item_past_fragment_oh)
-        val detailsBtn: Button = itemView.findViewById(R.id.button_details_item_past_fragment_oh)
+        val pickupTV: TextView = itemView.findViewById(R.id.text_view_pickup)
+        val dropOffTV: TextView = itemView.findViewById(R.id.text_view_drop_off)
+        val timeTV: TextView = itemView.findViewById(R.id.text_view_date)
+        val detailsBtn: Button = itemView.findViewById(R.id.button_details)
     }
 }

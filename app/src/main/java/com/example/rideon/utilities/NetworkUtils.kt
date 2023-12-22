@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import java.lang.ref.WeakReference
 
-class NetworkUtils private constructor(private val context: Context) {
+class NetworkUtils private constructor(context: Context) {
 
     private val applicationContext = context.applicationContext
     private val connectivityManager =

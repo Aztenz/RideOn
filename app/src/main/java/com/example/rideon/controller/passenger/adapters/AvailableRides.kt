@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 
 class AvailableRides(
-    private val rides: List<Ride>,
+    private val rides: MutableList<Ride>,
     private val popupContext: Context?,
     private val passenger: User
 )
@@ -52,6 +52,7 @@ class AvailableRides(
         return rides.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: AvailableRidesViewHolder, position: Int) {
         // Get the data model based on position
         val pickup: String = rides[position].origin
@@ -67,16 +68,23 @@ class AvailableRides(
         holder.priceTV.text = price.toString()
         holder.rideTypeIcon.setImageResource(images[rides[position].vehicleType])
 
-        if (rides[position].availableSeats==0)
-            holder.bookNowBtn.isEnabled = false
-
         val balanceAfterRide = passenger.walletBalance - rides[position].price
 
         if(balanceAfterRide<0)
             holder.bookNowBtn.isEnabled = false
+
+        holder.bookNowBtn.isEnabled = rides[position].availableSeats != 0
         holder.bookNowBtn.setOnClickListener {
             holder.bookNowBtn.isEnabled = false
-            bookNow.showPopup(it, passenger, rides[position])
+            bookNow.showPopup(
+                it,
+                passenger,
+                rides[position],
+                onBooked = {
+                    rides.removeAll(elements = rides)
+                    notifyDataSetChanged()
+                }
+            )
             bookNow.setOnDismissListener {
                 holder.bookNowBtn.isEnabled = true
             }

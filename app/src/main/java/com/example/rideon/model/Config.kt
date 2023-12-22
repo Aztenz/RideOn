@@ -19,7 +19,6 @@ object Config {
         "Busses",
     )
 
-    const val DOCUMENT_USER_DATA = "userData"
     const val COLLECTION_USERS = "users"
     const val COLLECTION_PASSENGERS = "passengers"
     const val COLLECTION_DRIVERS = "drivers"

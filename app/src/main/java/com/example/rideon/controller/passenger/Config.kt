@@ -40,5 +40,7 @@ object Config {
     const val MISSING_FIELDS = "Please fill all the fields"
     const val DRIVER_NOT_FOUND = "Can't find Driver"
     const val NO_INTERNET = "No internet connection"
+    const val EMAIL_DOMAIN = "@eng.asu.edu.eg"
+    const val EMAIL_DOMAIN_CHECK = "email must end with $EMAIL_DOMAIN"
     const val SUCCESS = "Success"
 }

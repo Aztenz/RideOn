@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/secondary_dark"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
-    android:padding="16dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:padding="16dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,7 +40,7 @@
             android:text="Name:"/>
 
         <TextView
-            android:id="@+id/tv_driver_name_fragment_order_info"
+            android:id="@+id/text_view_driver_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -62,7 +62,7 @@
             android:text="Ride type:"/>
 
         <TextView
-            android:id="@+id/tv_driver_ride_type_fragment_order_info"
+            android:id="@+id/text_view_ride_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -96,7 +96,7 @@
             android:text="Pickup:"/>
 
         <TextView
-            android:id="@+id/tv_trip_pickup_fragment_order_info"
+            android:id="@+id/text_view_pickup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -118,7 +118,7 @@
             android:text="Destination:"/>
 
         <TextView
-            android:id="@+id/tv_trip_destination_fragment_order_info"
+            android:id="@+id/text_view_drop_off"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -140,7 +140,7 @@
             android:text="Trip time:"/>
 
         <TextView
-            android:id="@+id/tv_trip_time_fragment_order_info"
+            android:id="@+id/text_view_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -162,24 +162,33 @@
             android:text="Trip status:"/>
 
         <TextView
-            android:id="@+id/tv_trip_status_fragment_order_info"
+            android:id="@+id/text_view_status"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:text="Confirmed"
             android:textSize="18sp"/>
-
-        <Button
-            android:id="@+id/button_track_fragment_order_info"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/track"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnCancel"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cancel Trip"/>
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/button_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel Trip"/>
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
 </LinearLayout>

@@ -35,7 +35,7 @@
     <string name="egp">EGP</string>
     <string name="rides">Rides</string>
     <string name="my_orders">My Orders</string>
-    <string name="currently_active">Currently Active</string>
+    <string name="current_order">Current Order</string>
     <string name="track">Track</string>
     <string name="cancel">Cancel</string>
     <string name="past_orders">Past Orders</string>

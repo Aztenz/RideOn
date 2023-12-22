@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat
 object Config {
 
     @SuppressLint("SimpleDateFormat")
-    val DATE_PATTERN = SimpleDateFormat("d MMM - h:MM a")
+    val DATE_PATTERN = SimpleDateFormat("d MMM - h:mm a")
 
     const val RIDE_STATUS_AVAILABLE = "Available"
     const val RIDE_STATUS_REJECTED = "rejected"
@@ -35,7 +35,7 @@ object Config {
     const val LOG_TAG = "myapp101"
     const val INVALID_LOCATIONS = "Invalid Locations"
     const val INVALID_TIME_SELECTION = "Invalid time"
-    const val MISSING_FIELDS = "Please fill all the fields"
+    const val WRONG_INPUT = "Please fill all the fields correctly"
     const val DRIVER_NOT_FOUND = "Can't find Driver"
     const val NO_INTERNET = "No internet connection"
     const val SUCCESS = "Success"

@@ -41,12 +41,15 @@ class Profile : Fragment() {
         networkUtil = NetworkUtils.getInstance(requireContext())
 
         val nameTV: TextView = view.findViewById(R.id.text_view_name)
+        val emailTV: TextView = view.findViewById(R.id.text_view_email)
 
         //get user
         roomAccountManager.getLoggedInUser(
             fragment = this@Profile,
-            onSuccess = { me = it
-                        nameTV.text = me.name },
+            onSuccess = {
+                me = it
+                nameTV.text = me.name
+                emailTV.text = me.email },
             onFailure = { AccountManager
                 .instance.logoutUser( onSuccess = {}, onFailure = {} ) } )
 
@@ -109,7 +112,6 @@ class Profile : Fragment() {
         myWalletBtn.setOnClickListener {
             switchButtons()
             val popupMyWallet = Wallet(
-                userId = me.userId,
                 balance = me.walletBalance,
                 profileFragment = this)
             popupMyWallet.show(childFragmentManager, popupMyWallet.tag)

@@ -104,7 +104,7 @@ class AccountManager private constructor()  {
                                 onFailure = {
                                     logoutUser(
                                         onSuccess = {},
-                                        onFailure = {}
+                                         onFailure = {}
                                     )
                                     onFailure.invoke(Config.ACCOUNT_BELONGS_TO_DRIVER) }
                             )

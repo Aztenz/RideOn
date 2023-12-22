@@ -74,11 +74,23 @@ class Login : Fragment() {
         val emailInput: TextInputLayout = view.findViewById(R.id.input_email)
         val passInput: TextInputLayout = view.findViewById(R.id.input_password)
         val radioGroup: RadioGroup = view.findViewById(R.id.radio_group_user_type)
+        val bypassPassengerBtn: Button = view.findViewById(R.id.button_bypass_passenger)
+        val bypassDriverBtn: Button = view.findViewById(R.id.button_bypass_driver)
 
+        bypassDriverBtn.setOnClickListener {
+            radioGroup.check(R.id.radio_driver)
+            bypass(1) }
+
+        bypassPassengerBtn.setOnClickListener {
+            radioGroup.check(R.id.radio_passenger)
+            bypass(2)
+        }
 
 
         //ensure that passenger is selected by default
         radioGroup.check(R.id.radio_passenger)
+
+
 
         login.setOnClickListener {
             login.isEnabled = false
@@ -211,5 +223,19 @@ class Login : Fragment() {
         } catch (e: Exception) {
             onFailure.invoke(e.message.toString())
         }
+    }
+
+    private fun bypass(type: Int){
+        val role = when(type) {
+            1 -> Config.UserRole.DRIVER
+            else -> Config.UserRole.PASSENGER
+        }
+        accountManager.loginUser(
+            "test@test.com",
+            "test123",
+            role,
+            onSuccess = { grantAccess(it, onFailure = {}) },
+            onFailure = {}
+        )
     }
 }

@@ -165,6 +165,19 @@
                     tools:ignore="PrivateResource,TextContrastCheck" />
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/button_bypass_passenger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Bypass as Passenger"/>
+
+            <Button
+                android:id="@+id/button_bypass_driver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bypass as Driver"/>
             <Space
                 android:layout_weight="1"
                 android:layout_width="wrap_content"

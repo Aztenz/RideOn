@@ -12,7 +12,6 @@ import com.example.rideon.model.database.firebase.DriverManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class Wallet(
-    private val userId: String,
     private val balance: Double,
     private val profileFragment: Profile
 ) : BottomSheetDialogFragment() {

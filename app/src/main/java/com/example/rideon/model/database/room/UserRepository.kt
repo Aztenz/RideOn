@@ -2,7 +2,6 @@ package com.example.rideon.model.database.room
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.rideon.model.data_classes.User
 
 class UserRepository(private val userDao: UserDao) {
@@ -18,10 +17,6 @@ class UserRepository(private val userDao: UserDao) {
     suspend fun updateUserWallet(user: User, newBalance: Double) {
         user.walletBalance = newBalance
         userDao.updateUser(user)
-    }
-
-    fun getUser(userID: String): LiveData<User> {
-        return userDao.getUser(userID)
     }
 
     fun getAllUsers(): LiveData<List<User>> {

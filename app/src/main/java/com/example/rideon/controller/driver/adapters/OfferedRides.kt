@@ -13,7 +13,7 @@ import com.example.rideon.model.data_classes.Ride
 import com.example.rideon.model.database.firebase.DriverManager
 
 class OfferedRides(
-    private val offeredRides: List<Ride>)
+    private val offeredRides: MutableList<Ride>)
     : RecyclerView.Adapter<OfferedRides.OfferedRidesViewHolder>() {
 
     private val driverManager: DriverManager = DriverManager.instance
@@ -54,6 +54,17 @@ class OfferedRides(
                 onFailure = {}
             )
         }
+
+        holder.finishRideBtn.setOnClickListener {
+            driverManager.finishRides(offeredRides[position].rideId,
+                onSuccess = {
+                    offeredRides.removeAt(position)
+                    notifyItemRemoved(position)
+                },
+                onFailure = {
+                    val x =5
+                })
+        }
     }
 
 
@@ -71,5 +82,8 @@ class OfferedRides(
             .findViewById(R.id.text_view_price)
         val cancelBtn: Button = itemView
             .findViewById(R.id.button_cancel_trip)
+
+        val finishRideBtn: Button = itemView
+            .findViewById(R.id.button_finish_ride)
     }
 }

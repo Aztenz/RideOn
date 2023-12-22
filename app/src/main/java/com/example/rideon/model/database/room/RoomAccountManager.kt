@@ -25,16 +25,6 @@ class RoomAccountManager private constructor(): AndroidViewModel(application = R
         }
     }
 
-    fun getUserFromRoom(userID: String, fragment: Fragment,
-                        onSuccess: (User) -> Unit) {
-        viewModelScope.launch {
-            userRepository.getUser(userID).observe(fragment.viewLifecycleOwner) {
-                if (it != null)
-                    onSuccess(it)
-            }
-        }
-    }
-
     fun getLoggedInUser(
         fragment: Fragment,
         onSuccess: (User) -> Unit,
@@ -53,12 +43,6 @@ class RoomAccountManager private constructor(): AndroidViewModel(application = R
     fun insertUser(user: User){
         viewModelScope.launch {
             userRepository.insertUser(user = user)
-        }
-    }
-
-    fun updateUser(user: User){
-        viewModelScope.launch {
-            userRepository.updateUser(user)
         }
     }
 

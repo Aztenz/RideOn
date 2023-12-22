@@ -28,7 +28,8 @@ class BookNow private constructor(private val context: Context) {
     fun showPopup(
         anchorView: View,
         passenger: User,
-        ride: Ride
+        ride: Ride,
+        onBooked: () -> Unit
     ) {
         val inflater = LayoutInflater.from(context)
         val popupView = inflater.inflate(R.layout.p_popup_book_now, null)
@@ -62,7 +63,7 @@ class BookNow private constructor(private val context: Context) {
 
         bookNowBtn.setOnClickListener {
             bookNowBtn.isEnabled = false
-            PassengerManager.instance.bookRide(passenger, ride)
+            PassengerManager.instance.bookRide(passenger, ride, onBooked = {onBooked.invoke()})
         }
 
 

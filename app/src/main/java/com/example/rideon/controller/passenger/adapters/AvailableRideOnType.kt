@@ -17,7 +17,7 @@ import java.util.Date
 
 
 class AvailableRideOnType(
-    private val rides: List<Ride>,
+    private val rides: MutableList<Ride>,
     private val popupContext: Context?,
     private val passenger: User
 ) :
@@ -46,6 +46,7 @@ class AvailableRideOnType(
         return rides.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: RidesTypeViewHolder, position: Int) {
         // Get the data model based on position
         val pickup: String = rides[position].origin
@@ -73,7 +74,11 @@ class AvailableRideOnType(
 
         holder.bookNowBtn.setOnClickListener {
             holder.bookNowBtn.isEnabled = false
-            bookNow.showPopup(it, passenger, rides[position])
+            bookNow.showPopup(it, passenger, rides[position],
+                onBooked = {
+                    rides.removeAll(elements = rides)
+                    notifyDataSetChanged()
+                })
             bookNow.setOnDismissListener {
                 holder.bookNowBtn.isEnabled = true
             }
